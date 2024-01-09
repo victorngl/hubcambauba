@@ -8,8 +8,9 @@ export default function Home() {
   if (currentUser && isAuthorized && !isLoading) {
     return (
       <div className="flex">
-        <p>{currentUser.data.attributes.name}</p>
-        <p>{currentUserRole}</p>
+        <p>Seu nome é {currentUser.data.attributes.name}</p>
+        <br></br>
+        <p>Você é um {currentUserRole}</p>
       </div>
     )
   }

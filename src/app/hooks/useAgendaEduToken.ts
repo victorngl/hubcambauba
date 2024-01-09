@@ -28,12 +28,12 @@ export default function useAgendaEduToken() {
                 const jsonData = await response.json();
 
                 if (jsonData.errors) {
-                    setUserData((prevUserData) => ({
+                    setUserData((prevUserData: any) => ({
                         ...prevUserData,
                         error: jsonData.errors,
                     }));
                 } else {
-                    setUserData((prevUserData) => ({
+                    setUserData((prevUserData: any) => ({
                         currentUser: jsonData,
                         currentUserRole: jsonData.data.attributes.role,
                         isAuthorized: true,
@@ -43,7 +43,7 @@ export default function useAgendaEduToken() {
                 }
             } catch (error) {
                 console.error('Error fetching user:', error);
-                setUserData((prevUserData) => ({
+                setUserData((prevUserData: any) => ({
                     ...prevUserData,
                     error,
                     isLoading: false,
@@ -55,7 +55,7 @@ export default function useAgendaEduToken() {
             fetchCurrentUser();
         } else {
             // Handle the case when there is no token
-            setUserData((prevUserData) => ({
+            setUserData((prevUserData: any) => ({
                 ...prevUserData,
                 error: 'No token found',
                 isLoading: false,
