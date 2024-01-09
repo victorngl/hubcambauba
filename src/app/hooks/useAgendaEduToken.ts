@@ -17,7 +17,8 @@ export default function useAgendaEduToken() {
             }
         });
         const jsonData = await response.json();
-
+        
+        console.log('TOKEN: **' + token + '**')
         console.log(jsonData)
 
         currentUser = jsonData;
