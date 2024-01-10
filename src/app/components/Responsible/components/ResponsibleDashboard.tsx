@@ -4,7 +4,7 @@ export const ResponsibleDashboard = ({ responsible }: { responsible: any }) => {
         <main style={{ backgroundImage: "url('bg.jpg')" }}
             className="h-[100vh] bg-cover">
 
-            <div className="h-[10vh] flex justify-between p-4 items-center bg-white">
+            <div className="h-[10vh] flex justify-between p-4 items-center bg-slate-100">
                 <div className="">
                     <Image src="/logo.png" width={120} height={120} alt='Cambauba Logo'/>
                 </div>
