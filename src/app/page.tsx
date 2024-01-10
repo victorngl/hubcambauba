@@ -23,7 +23,7 @@ export default function Home() {
     )
   }
 
-  if (currentUser && currentUserRole === "master" && isAuthorized) {
+  if (currentUser && currentUserRole === "responsible" && isAuthorized) {
     return (
       <ResponsibleDashboard responsible={currentUser} />
     )
