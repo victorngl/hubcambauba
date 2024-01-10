@@ -6,10 +6,10 @@ import { ResponsibleDashboard } from "./components/Responsible/components/Respon
 export default function Home() {
   const { currentUser, currentUserRole, isAuthorized, isLoading } = useAgendaEduToken();
 
-  if(isLoading) {
+  if (isLoading) {
     return (
       <div className="flex">
-       <p> Carregando... </p>
+        <p> Carregando... </p>
       </div>
     )
   }
@@ -17,29 +17,15 @@ export default function Home() {
   if (!currentUser || !isAuthorized) {
     return (
       <div className="flex">
-       <p> Usuário não encontrado ou não autorizado. </p>
+        <p> Usuário não encontrado ou não autorizado. </p>
       </div>
     )
+  }
 
   if (currentUser && currentUserRole === "responsible" && isAuthorized) {
     return (
-         <ResponsibleDashboard responsible={currentUser} />
+      <ResponsibleDashboard responsible={currentUser} />
     )
   }
-
-  /*
-  if (currentUser && currentUserRole === "student" && isAuthorized && !isLoading) {
-    return (
-         <ResponsibleDashboard responsible={currentUser} />
-    )
-  }
-  */
   
-  else {
-    return (
-      <div className="flex">
-       <p> Usuário não encontrado. </p>
-      </div>
-    )
-  }
 }
