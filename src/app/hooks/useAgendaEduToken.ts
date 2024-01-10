@@ -7,7 +7,9 @@ export default function useAgendaEduToken() {
     const searchParams = useSearchParams();
     const hasToken = searchParams.has('token');
     const token = searchParams.get('token');
-
+    
+    console.log(token);
+    
     const [userData, setUserData] = useState<any>({
         currentUser: null,
         currentUserRole: null,
