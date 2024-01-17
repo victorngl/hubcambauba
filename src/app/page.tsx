@@ -6,7 +6,6 @@ import { ResponsibleDashboard } from "./components/Responsible/components/Respon
 export default function Home() {
   const { currentUser, currentUserRole, isAuthorized, isLoading } = useAgendaEduToken();
 
-  console.log(currentUserRole)
   if (isLoading) {
     return (
       <div className="flex">
