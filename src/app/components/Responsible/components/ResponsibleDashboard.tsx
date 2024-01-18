@@ -15,11 +15,11 @@ export const ResponsibleDashboard = ({ responsible }: { responsible: any }) => {
             {/*ALUNO*/}
             <StudentInfo responsible={responsible} />
 
-            {/*MAIN CONTENT*/}
+            {/*MAIN CONTENT*
             <div className='h-[calc(100vh-10rem)] overflow-y-auto p-5'>
                 <div className='flex flex-col gap-5'>
 
-                    {/*TAREFAS*/}
+                    {/*TAREFAS
                     <div className='h-auto border p-2 flex gap-5'>
                         <div className=''>
                             <p className='text-gray-600 text-xs font-bold'>Tarefas</p>
@@ -31,7 +31,7 @@ export const ResponsibleDashboard = ({ responsible }: { responsible: any }) => {
                         </div>
                     </div>
 
-                    {/*AVISOS*/}
+                    {/*AVISOS
                     <div className='h-auto border p-2 flex gap-5'>
                         <div className=''>
                             <p className='text-gray-600 text-xs font-bold'>Avisos</p>
@@ -43,7 +43,7 @@ export const ResponsibleDashboard = ({ responsible }: { responsible: any }) => {
                         </div>
                     </div>
 
-                    {/*EVENTOS*/}
+                    {/*EVENTOS
                     <div className='h-auto border p-2 flex gap-5'>
                         <div className=''>
                             <p className='text-gray-600 text-xs font-bold'>Eventos</p>
@@ -56,7 +56,7 @@ export const ResponsibleDashboard = ({ responsible }: { responsible: any }) => {
                     </div>
 
                 </div>
-            </div>
+            </div>*/}
 
         </main>
     )
