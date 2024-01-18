@@ -1,7 +1,9 @@
 'use client'
 
-import { useUser } from "@/app/contexts/useCurrentUser";
-import useAgendaEduToken from "@/app/hooks/useAgendaEduToken";
+import { useUser } from "@/contexts/useCurrentUser";
+import { ResponsibleNavbar } from "../navbar/ResponsibleNavbar";
+import { StudentInfo } from "../student/StudentInfo";
+import useAgendaEduToken from "@/hooks/useAgendaEduToken";
 
 export default function ResponsibleLayout({ children }) {
     const { currentUser, currentUserRole, isAuthorized, isLoading } = useAgendaEduToken();
@@ -31,7 +33,15 @@ export default function ResponsibleLayout({ children }) {
     if (user) {
         return (
             <>
-                {children}
+                <main /* style={{ backgroundImage: "url('bg.jpg')" }}*/
+                    className="h-[100vh] bg-cover">
+                    {/*NAVBAR}*/}
+                    <ResponsibleNavbar responsible={user} />
+                    <StudentInfo responsible={user} />
+
+                    {/*ALUNO*/}
+                    {children}
+                </main >
             </>
         )
 
