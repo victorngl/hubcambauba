@@ -21,13 +21,13 @@ export default function StudentInfo({ responsible }) {
         <div className='h-auto border p-2 flex gap-5 flex-col-3'>
 
             <div className='w-full'>
-                <p className='text-gray-600 text-xs font-bold'>Aluno</p>
-                <p className='text-gray-800 text-sm font-bold'>{responsibleStudent.attributes.name}</p>
+                <p className='text-gray-600 text-xs font-bold whitespace-nowrap'>Aluno</p>
+                <p className='text-gray-800 text-sm font-bold whitespace-nowrap'>{responsibleStudent.attributes.name}</p>
             </div>
 
             <div className='w-full'>
-                <p className='text-gray-600 text-xs font-bold'>Turma</p>
-                <p className='text-gray-800 text-sm font-bold'>{studentClassroomsText}</p>
+                <p className='text-gray-600 text-xs font-bold whitespace-nowrap'>Turma</p>
+                <p className='text-gray-800 text-sm font-bold whitespace-nowrap'>{studentClassroomsText}</p>
             </div>
 
             <div className='w-full text-right'>
