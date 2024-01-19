@@ -32,7 +32,7 @@ export default function ResponsibleLayout({ children }) {
         setCurrentUser(currentUser);
     }
     */
-    if (user) {
+    if (user && (currentUserRole === "master" || currentUserRole === "responsible") && isAuthorized) {
         return (
             <>
                 <main /* style={{ backgroundImage: "url('bg.jpg')" }}*/
