@@ -1,7 +1,7 @@
 'use client'
 
 import { useUser } from "@/contexts/useCurrentUser";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function Gatemoves() {
 
@@ -15,7 +15,7 @@ export default function Gatemoves() {
         responsibleStudent = user.included.find(o => o.type === 'family_profile');
     }
 
-    async function getGatemoves() {
+    const getGatemoves = useCallback(async () => {
         const response = await fetch('/api/strapi/', {
             method: 'POST',
             headers: {
@@ -33,16 +33,19 @@ export default function Gatemoves() {
         const data = await response.json();
 
         if (data.data.data.length > 0) {
-            setLoading(false);
+
             setGatemoves(data.data.data);
         }
-    }
+
+        setLoading(false);
+
+    }, [responsibleStudent.id]);
 
     useEffect(() => {
         getGatemoves();
-    }, []);
+    }, [getGatemoves]);
 
-    if(loading) {
+    if (loading) {
         return (
             <div className="flex justify-center items-center h-screen">
                 <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
@@ -81,7 +84,7 @@ export default function Gatemoves() {
                 </div>
             }
 
-            
+
         </div>
 
     )

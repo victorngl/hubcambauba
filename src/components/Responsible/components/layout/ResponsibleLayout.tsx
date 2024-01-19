@@ -2,7 +2,7 @@
 
 import { useUser } from "@/contexts/useCurrentUser";
 import { ResponsibleNavbar } from "../navbar/ResponsibleNavbar";
-import { StudentInfo } from "../student/StudentInfo";
+import StudentInfo from "../student/StudentInfo";
 import useAgendaEduToken from "@/hooks/useAgendaEduToken";
 
 export default function ResponsibleLayout({ children }) {
