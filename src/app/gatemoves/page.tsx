@@ -7,6 +7,7 @@ export default function Gatemoves() {
 
     const { user } = useUser();
     const [gatemoves, setGatemoves] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     let responsibleStudent = null;
 
@@ -20,7 +21,7 @@ export default function Gatemoves() {
             headers: {
                 'Content-Type': 'application/json',
                 'method': 'GET',
-                'path': `/api/gate-moves/?filters[student_id][$eq]=${responsibleStudent.id}`
+                'path': `/api/gate-moves/?sort[0]=schedule:desc&filters[student_id][$eq]=${responsibleStudent.id}`
             },
             body: '',
         });
@@ -31,35 +32,73 @@ export default function Gatemoves() {
 
         const data = await response.json();
 
-        setGatemoves(data.data.data);
+        if (data.data.data.length > 0) {
+            setLoading(false);
+            setGatemoves(data.data.data);
+        }
     }
 
     useEffect(() => {
         getGatemoves();
     }, []);
 
+    if(loading) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
+            </div>
+        )
+    }
     return (
-        <>
-            {gatemoves &&
-                <>
-                    <a>aaa</a>
-                    {gatemoves.map(gatemove => (
+        <div>
+            {gatemoves.length > 0 &&
+                <div>
+                    <h1 className="w-full text-center text-lg my-2 font-semibold shadow-sm">Movimentos da Catraca</h1>
+                    <div className="flex justify-center">
+                        <table className="table-auto text-center border-separate border-spacing-y-2">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Movimento</th>
+                                    <th>Horário</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {gatemoves.map(gatemove => (
 
-                        <div key={gatemove.id} className=''>
-                            {/* create a component to list gatemoves */}
-                            <p>{gatemove.attributes.created_at}</p>
-                            <p>{gatemove.attributes.student_id}</p>
-                            <p>{gatemove.attributes.studant_name}</p>
-                            {gatemove.attributes.type === 'IN' ? <p>ENTRADA</p> : <p>SAÍDA</p>}
-                            <p>{gatemove.attributes.schedule}</p>
+                                    <tr key={gatemove.id} className="row">
+                                        <td>{gatemove.attributes.studant_name}</td>
+                                        <td>{gatemove.attributes.type === 'OUT' ? <>Saída</> : <>Entrada</>}</td>
+                                        <td>
+                                            {gatemove.attributes.schedule && formatDate(gatemove.attributes.schedule)}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
 
-                        </div>
-
-                    )
-                    )}
-                </>
+                </div>
             }
-        </>
+
+            
+        </div>
 
     )
 }
+
+const formatDate = (dateString) => {
+    const dataObj = new Date(dateString);
+    const formattedDate =
+        dataObj.getDate() +
+        '/' +
+        (dataObj.getMonth() + 1) +
+        '/' +
+        dataObj.getFullYear() +
+        ' ' +
+        dataObj.getHours() +
+        ':' +
+        dataObj.getMinutes();
+
+    return formattedDate;
+};

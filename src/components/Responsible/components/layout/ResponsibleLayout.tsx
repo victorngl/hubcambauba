@@ -6,15 +6,16 @@ import { StudentInfo } from "../student/StudentInfo";
 import useAgendaEduToken from "@/hooks/useAgendaEduToken";
 
 export default function ResponsibleLayout({ children }) {
-    const { currentUser, currentUserRole, isAuthorized, isLoading } = useAgendaEduToken();
 
     const { user, setCurrentUser } = useUser();
+    const { currentUser, currentUserRole, isAuthorized, isLoading } = useAgendaEduToken({ setCurrentUser });
 
     if (isLoading) {
         return (
-            <div className="flex">
-                <p> Carregando... </p>
+            <div className="flex justify-center items-center h-screen">
+                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
             </div>
+        
         )
     }
 
@@ -26,10 +27,11 @@ export default function ResponsibleLayout({ children }) {
         )
     }
 
+    /*
     if (currentUser && (currentUserRole === "master" || currentUserRole === "responsible") && isAuthorized) {
         setCurrentUser(currentUser);
     }
-
+    */
     if (user) {
         return (
             <>

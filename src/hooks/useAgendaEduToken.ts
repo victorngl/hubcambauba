@@ -3,7 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function useAgendaEduToken() {
+export default function useAgendaEduToken({ setCurrentUser }) {
     const searchParams = useSearchParams();
     const hasToken = searchParams.has('token');
     const token = searchParams.get('token');
@@ -42,6 +42,8 @@ export default function useAgendaEduToken() {
                         isLoading: false,
                         error: null,
                     }));
+
+                    setCurrentUser(jsonData);
                 }
             } catch (error) {
                 console.error('Error fetching user:', error);
