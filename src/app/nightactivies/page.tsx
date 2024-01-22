@@ -49,7 +49,7 @@ export default function NightActivities() {
             <div className="p-2 w-full">
                 <div className="text-center">
                     <h1 className="mb-5 font-bold text-gray-800">Atividades Complementares Noturnas</h1>
-                    {subscription === null && <NightactivitiesSubscritionForm student={student} />}
+                   {/*} {subscription === null && <NightactivitiesSubscritionForm student={student} />}*/}
 
                 </div>
             </div>
