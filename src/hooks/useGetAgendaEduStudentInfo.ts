@@ -10,6 +10,7 @@ export function useGetAgendaEduStudentInfo({ responsible }) {
     const studentCourse = separatedStrings[1];
 
     const student = {
+        id: responsibleStudent.id,
         name: responsibleStudent.attributes.name,
         class: studentClass,
         course: studentCourse,
