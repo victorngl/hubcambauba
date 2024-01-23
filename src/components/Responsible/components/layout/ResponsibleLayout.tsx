@@ -4,7 +4,8 @@ import { useUser } from "@/contexts/useCurrentUser";
 import { ResponsibleNavbar } from "../navbar/ResponsibleNavbar";
 import StudentInfo from "../student/StudentInfo";
 import useAgendaEduToken from "@/hooks/useAgendaEduToken";
-import { Loading } from "@/components/utils/Loading";
+import { Loading } from "@/components/ui/utils/Loading";
+import NotAllowed from "@/components/ui/utils/notallowed/NotAllowed";
 
 export default function ResponsibleLayout({ children }) {
 
@@ -17,9 +18,9 @@ export default function ResponsibleLayout({ children }) {
 
     if (!currentUser || !isAuthorized) {
         return (
-            <div className="flex">
-                <p> Usuário não encontrado ou não autorizado. </p>
-            </div>
+            <NotAllowed>
+                <p className="font-bold text-slate-700">Usuário não encontrado ou não autorizado.</p>
+            </NotAllowed>
         )
     }
 
@@ -28,7 +29,7 @@ export default function ResponsibleLayout({ children }) {
         setCurrentUser(currentUser);
     }
     */
-    if (user && (currentUserRole === "master" || currentUserRole === "responsible") && isAuthorized) {
+    if (user && currentUserRole === "responsible" && isAuthorized) {
         return (
             <>
                
