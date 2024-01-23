@@ -23,7 +23,7 @@ export default function NightActivities() {
                 'method': 'GET',
                 'path': `/api/night-activies/?filters[studentId][$eq]=${student.id}`
             },
-            body: JSON.stringify({ }),
+            body: JSON.stringify({}),
         });
 
         if (!response.ok) {
@@ -33,7 +33,7 @@ export default function NightActivities() {
         const data = await response.json();
 
         if (data.data.data.length > 0) {
-           setSubscription(data.data.data[0].attributes);
+            setSubscription(data.data.data[0].attributes);
         }
 
         setLoading(false);
@@ -46,18 +46,22 @@ export default function NightActivities() {
     }, [getNightactivitySubscription]);
 
 
-    if(loading) {
-        return ( <Loading /> )
-    } 
+    if (loading) {
+        return (<Loading />)
+    }
     return (
         <>
             <div className="p-2 w-full">
                 <div className="text-center">
-                    <Image alt="Atividades Esportivas" src="/nightactivities/esportivas.png" width={1000} height={1000}/>
+                    <div className="flex flex-col justify-center">
+                        <p><Image alt="Atividades Esportivas" src="/nightactivities/esportivas.png" width={1000} height={1000} /></p>
+                        <p><Image alt="Atividades Culturais" src="/nightactivities/cultural.png" width={1000} height={1000} /></p>
+                    </div>
+
 
                     <h1 className="mb-5 font-bold text-gray-800">Atividades Complementares Noturnas</h1>
-                    {subscription === null ? <Link href="/nightactivies/subscription">INSCRIÇÃO</Link> : 
-                    <NightacvivitySubscriptionCard subscription={subscription} />}
+                    {subscription === null ? <Link href="/nightactivies/subscription">INSCRIÇÃO</Link> :
+                        <NightacvivitySubscriptionCard subscription={subscription} />}
                 </div>
             </div>
         </>

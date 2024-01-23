@@ -65,7 +65,7 @@ export default function useAgendaEduToken({ setCurrentUser }) {
                 isLoading: false,
             }));
         }
-    }, [hasToken, token]);
+    }, [hasToken, token, setCurrentUser]);
 
     return userData;
 }

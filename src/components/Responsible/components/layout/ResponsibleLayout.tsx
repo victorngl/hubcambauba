@@ -12,7 +12,7 @@ export default function ResponsibleLayout({ children }) {
     const { currentUser, currentUserRole, isAuthorized, isLoading } = useAgendaEduToken({ setCurrentUser });
 
     if (isLoading) {
-        return ( <Loading /> );
+        return (<Loading />);
     }
 
     if (!currentUser || !isAuthorized) {
@@ -31,15 +31,17 @@ export default function ResponsibleLayout({ children }) {
     if (user && (currentUserRole === "master" || currentUserRole === "responsible") && isAuthorized) {
         return (
             <>
-                <main /* style={{ backgroundImage: "url('bg.jpg')" }}*/
-                    className="h-[100vh] bg-cover">
-                    {/*NAVBAR}*/}
-                    <ResponsibleNavbar responsible={user} />
-                    <StudentInfo responsible={user} />
+               
+                    <main /* style={{ backgroundImage: "url('bg.jpg')" }}*/
+                        className="h-[100vh] bg-cover">
+                        {/*NAVBAR}*/}
+                        <ResponsibleNavbar responsible={user} />
+                        <StudentInfo responsible={user} />
 
-                    {/*ALUNO*/}
-                    {children}
-                </main >
+                        {/*ALUNO*/}
+                        {children}
+                    </main >
+               
             </>
         )
 
