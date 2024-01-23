@@ -48,5 +48,11 @@ export default function ResponsibleLayout({ children }) {
 
     }
 
+    return (
+        <NotAllowed>
+            <p className="font-bold text-slate-700">Usuário não encontrado ou não autorizado.</p>
+        </NotAllowed>
+    )
+
 
 }
