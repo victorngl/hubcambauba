@@ -53,7 +53,7 @@ export default function NightActivities() {
         <>
             <div className="p-2 w-full">
                 <div className="text-center">
-                    <div className="flex flex-col justify-center">
+                    <div className="flex flex-col justify-center space-y-2">
                         <p><Image alt="Atividades Esportivas" src="/nightactivities/esportivas.png" width={1000} height={1000} /></p>
                         <p><Image alt="Atividades Culturais" src="/nightactivities/cultural.png" width={1000} height={1000} /></p>
                     </div>
