@@ -7,6 +7,6 @@ type NightactivitiesSubscriptionInput = {
     esportiveActivity: string;
     optionActivity: string;
     userAnswer: string;
-    answerDate: string;
+    answerTime: string | Date;
     answered: boolean;
-  }
+}

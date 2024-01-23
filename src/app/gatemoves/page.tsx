@@ -1,5 +1,6 @@
 'use client'
 
+import { Loading } from "@/components/utils/Loading";
 import { useUser } from "@/contexts/useCurrentUser";
 import { useCallback, useEffect, useState } from "react";
 
@@ -23,7 +24,7 @@ export default function Gatemoves() {
                 'method': 'GET',
                 'path': `/api/gate-moves/?sort[0]=schedule:desc&filters[student_id][$eq]=${responsibleStudent.id}`
             },
-            body: '',
+            body: JSON.stringify({ }),
         });
 
         if (!response.ok) {
@@ -47,9 +48,7 @@ export default function Gatemoves() {
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center h-screen">
-                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
-            </div>
+            <Loading/>
         )
     }
     return (

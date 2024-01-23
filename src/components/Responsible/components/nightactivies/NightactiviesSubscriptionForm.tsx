@@ -1,5 +1,6 @@
-import { useEffect } from "react";
+import { useGetAgendaEduStudentInfo } from "@/hooks/useGetAgendaEduStudentInfo";
 import { useForm, SubmitHandler } from "react-hook-form"
+import { useRouter } from "next/navigation";
 
 const OficinasEsportivas = [
     { id: 1, name: 'FUTSAL (misto) - 1º e 2º Ano / EF', permission: [{ course: '1º Ano' }, { course: '2º Ano' }] },
@@ -42,19 +43,55 @@ const OficinasCulturais = [
 
 ];
 
-export const NightactivitiesSubscritionForm = ({ student }) => {
+export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { responsible: any, subscription?: NightactivitiesSubscriptionInput }) => {
+    const router  = useRouter();
 
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm<NightactivitiesSubscriptionInput>({
+    const { student } = useGetAgendaEduStudentInfo({ responsible });
+
+    const { register, handleSubmit, formState: { errors } } = useForm<NightactivitiesSubscriptionInput>({
         defaultValues: {
             studentId: student.id,
             studentName: student.name,
-            courseName: student.course
+            courseName: student.course,
+            userAnswer: responsible.data.attributes.email,
+            answered: true,
+            answerTime: new Date(),
+            priority: (subscription !== undefined) ? subscription.priority : '',
+            esportiveActivity: (subscription !== undefined) ? subscription.esportiveActivity : '',
+            culturalActivity: (subscription !== undefined) ? subscription.culturalActivity : '',
+            optionActivity: (subscription !== undefined) ? subscription.optionActivity : '',
         }
     });
 
+    const onSubmit: SubmitHandler<NightactivitiesSubscriptionInput> = async data => {
+
+        
+        const response = await fetch('/api/strapi/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'method': 'POST',
+                'path': `/api/night-activies/`
+            },
+            body: JSON.stringify({ data }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erro ao realizar a requisição: ${response.statusText}`);
+        }
+
+        const responseJson = await response.json();
+
+        if (responseJson.data) {
+            router.back();
+        } else {
+            alert('Erro ao realizar a inscrição!');
+        }        
+    }
+
     return (
 
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
             {/* include validation with required or other standard HTML validation rules */}
 
             <div className="mb-5">
@@ -69,17 +106,17 @@ export const NightactivitiesSubscritionForm = ({ student }) => {
 
             <div className="text-center mb-5">
                 <label htmlFor="courseName" className="block mb-2 text-sm font-medium text-gray-900">Deseja que a primeira opção seja</label>
-                <fieldset className="flex justify-center gap-12 items-center" {...register("priority")}>
+                <fieldset className="flex justify-center gap-12 items-center">
 
                     <div className="flex">
-                        <input id="esportiva" type="radio" name="priority" value="USA" className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" />
+                        <input id="esportiva" {...register("priority")} type="radio" value="Esportiva" className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" />
                         <label htmlFor="esportiva" className="block ms-2  text-sm font-medium text-gray-900 dark:text-gray-300">
                             Esportiva
                         </label>
                     </div>
 
                     <div className="flex">
-                        <input id="cultural" type="radio" name="priority" value="Germany" className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 " />
+                    <input id="cultural" type="radio" {...register("priority")} value="Cultural" className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" />
                         <label htmlFor="cultural" className="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                             Cultural
                         </label>
