@@ -4,6 +4,7 @@ import { useUser } from "@/contexts/useCurrentUser";
 import { ResponsibleNavbar } from "../navbar/ResponsibleNavbar";
 import StudentInfo from "../student/StudentInfo";
 import useAgendaEduToken from "@/hooks/useAgendaEduToken";
+import { Loading } from "@/components/utils/Loading";
 
 export default function ResponsibleLayout({ children }) {
 
@@ -11,12 +12,7 @@ export default function ResponsibleLayout({ children }) {
     const { currentUser, currentUserRole, isAuthorized, isLoading } = useAgendaEduToken({ setCurrentUser });
 
     if (isLoading) {
-        return (
-            <div className="flex justify-center items-center h-screen">
-                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
-            </div>
-        
-        )
+        return ( <Loading /> );
     }
 
     if (!currentUser || !isAuthorized) {
