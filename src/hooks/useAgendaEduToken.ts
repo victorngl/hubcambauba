@@ -33,6 +33,7 @@ export default function useAgendaEduToken({ setCurrentUser }) {
                     setUserData((prevUserData: any) => ({
                         ...prevUserData,
                         error: jsonData.errors,
+                        isLoading: false,
                     }));
                 } else {
                     setUserData((prevUserData: any) => ({
@@ -45,11 +46,6 @@ export default function useAgendaEduToken({ setCurrentUser }) {
 
                     setCurrentUser(jsonData);
                 }
-
-                setUserData((prevUserData: any) => ({
-                    ...prevUserData,
-                    isLoading: false,
-                }));
 
             } catch (error) {
                 console.error('Error fetching user:', error);

@@ -53,15 +53,29 @@ export default function NightActivities() {
         <>
             <div className="p-2 w-full">
                 <div className="text-center">
-                    <div className="flex flex-col justify-center space-y-2">
-                        <p><Image alt="Atividades Esportivas" src="/nightactivities/esportivas.png" width={1000} height={1000} /></p>
-                        <p><Image alt="Atividades Culturais" src="/nightactivities/cultural.png" width={1000} height={1000} /></p>
-                    </div>
+
 
 
                     <h1 className="mb-5 font-bold text-gray-800">Atividades Complementares Noturnas</h1>
-                    {subscription === null ? <Link href="/nightactivies/subscription">INSCRIÇÃO</Link> :
-                        <NightacvivitySubscriptionCard subscription={subscription} />}
+                    {
+                        subscription === null ?
+
+                            <Link href="/nightactivies/subscription">
+                                <button type="button" className="p-2 bg-green-500 text-white rounded mb-2">Realizar Inscrição</button>
+                            </Link>
+                            :
+                            <NightacvivitySubscriptionCard subscription={subscription} />
+                    }
+
+                    <div className="flex justify-center space-y-2">
+
+                        <div className="my-5">
+                            <p className="text-sm font-semibold">Para visualizar as atividades, basta dar zoom na tela.</p>
+                            <Image alt="Atividades Esportivas" src="/nightactivities/esportivas.png" width={1000} height={1000} />
+                            <Image alt="Atividades Culturais" src="/nightactivities/cultural.png" width={1000} height={1000} />
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </>

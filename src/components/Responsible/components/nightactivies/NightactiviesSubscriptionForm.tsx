@@ -110,14 +110,14 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
 
                     <div className="flex">
                         <input id="esportiva" {...register("priority")} type="radio" value="Esportiva" className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" />
-                        <label htmlFor="esportiva" className="block ms-2  text-sm font-medium text-gray-900 dark:text-gray-300">
+                        <label htmlFor="esportiva" className="block ms-2  text-sm font-medium text-gray-900">
                             Esportiva
                         </label>
                     </div>
 
                     <div className="flex">
                     <input id="cultural" type="radio" {...register("priority")} value="Cultural" className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" />
-                        <label htmlFor="cultural" className="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                        <label htmlFor="cultural" className="block ms-2 text-sm font-medium text-gray-900">
                             Cultural
                         </label>
                     </div>
@@ -127,7 +127,7 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
 
             <div className="mb-5">
                 <label htmlFor="esportiva" className="block mb-2 text-sm font-medium text-gray-900 ">Escolha a atividade esportiva:</label>
-                <select {...register("esportiveActivity")} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select {...register("esportiveActivity")} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
 
                     {OficinasEsportivas.map((modalidade, index) =>
                         modalidade.permission.map((permissao, index) => (
@@ -140,7 +140,7 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
 
             <div className="mb-5">
                 <label htmlFor="cultural" className="block mb-2 text-sm font-medium text-gray-900 ">Escolha a atividade cultural:</label>
-                <select {...register("culturalActivity")} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select {...register("culturalActivity")} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
 
                     {OficinasCulturais.map((modalidade, index) =>
                         modalidade.permission.map((permissao, index) => (
@@ -153,7 +153,7 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
 
             <div className="mb-5">
                 <label htmlFor="optional" className="block mb-2 text-sm font-medium text-gray-900 ">Escolha uma atividade esportiva ou cultural (3º Opção):</label>
-                <select {...register("optionActivity")} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select {...register("optionActivity")} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
 
                     {OficinasEsportivas.map((modalidade, index) =>
                         modalidade.permission.map((permissao, index) => (
@@ -173,10 +173,6 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
             <div className='text-sm font-semibold text-justify mb-3 mt-10'>*Verifique as modalidades antes de Enviar</div>
             <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Enviar</button>
         </form>
-
-
-
-
     )
 
 }
