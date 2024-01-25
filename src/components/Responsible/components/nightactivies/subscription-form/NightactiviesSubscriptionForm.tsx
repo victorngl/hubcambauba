@@ -54,9 +54,9 @@ const subscriptionSchema = z.object({
     answered: z.boolean(),
     answerTime: z.date(),
     priority: z.custom((value) => value === 'Esportiva' || value === 'Cultural', { message: 'Selecione uma atividade prioritária' }),
-    esportiveActivity: z.string().min(1, { message: 'Selecione uma atividade esportiva' }),
-    culturalActivity: z.string().min(1, { message: 'Selecione uma atividade cultural' }),
-    optionActivity: z.string().optional().nullable().default(''),
+    esportiveActivity: z.string().nullable(),
+    culturalActivity: z.string().nullable(),
+    optionActivity: z.string().optional().nullable(),
 });
 
 export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { responsible: any, subscription?: NightactivitiesSubscriptionInput }) => {
@@ -73,10 +73,10 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
             userAnswer: responsible.data.attributes.email,
             answered: true,
             answerTime: new Date(),
-            priority: subscription?.priority !== undefined ? subscription.priority : '',
-            esportiveActivity: subscription?.esportiveActivity !== undefined ? subscription.esportiveActivity : '',
-            culturalActivity: subscription?.culturalActivity !== undefined ? subscription.culturalActivity : '',
-            optionActivity: subscription?.optionActivity !== undefined ? subscription.optionActivity : '',
+            priority: subscription?.priority !== undefined ? subscription.priority : 'Não se aplica',
+            esportiveActivity: subscription?.esportiveActivity !== undefined ? subscription.esportiveActivity : 'Não se aplica',
+            culturalActivity: subscription?.culturalActivity !== undefined ? subscription.culturalActivity : 'Não se aplica',
+            optionActivity: subscription?.optionActivity !== undefined ? subscription.optionActivity : 'Não se aplica',
         }
     });
 
@@ -151,7 +151,7 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
                 {errors.esportiveActivity && <FieldErrorBoundary>{errors.esportiveActivity.message}</FieldErrorBoundary>}
                 <label htmlFor="esportiva" className="block mb-2 text-sm font-medium text-gray-900 ">Escolha a atividade esportiva:</label>
                 <select {...register("esportiveActivity")} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-
+                    <option value="Não se aplica" >Não se aplica</option>    
                     {OficinasEsportivas.map((modalidade, index) =>
                         modalidade.permission.map((permissao, index) => (
                             (permissao.course == student.course) && <option key={index} value={modalidade.name}>{modalidade.name}</option>
@@ -165,7 +165,7 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
                 {errors.culturalActivity && <FieldErrorBoundary>{errors.culturalActivity.message}</FieldErrorBoundary>}
                 <label htmlFor="cultural" className="block mb-2 text-sm font-medium text-gray-900 ">Escolha a atividade cultural:</label>
                 <select {...register("culturalActivity")} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-
+                    <option value="Não se aplica" >Não se aplica</option>
                     {OficinasCulturais.map((modalidade, index) =>
                         modalidade.permission.map((permissao, index) => (
                             (permissao.course == student.course) && <option key={index} value={modalidade.name}>{modalidade.name}</option>
@@ -178,7 +178,7 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
             <div className="mb-5">
                 <label htmlFor="optional" className="block mb-2 text-sm font-medium text-gray-900 ">Escolha uma atividade esportiva ou cultural (3º Opção):</label>
                 <select {...register("optionActivity")} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-
+                <option value="Não se aplica" >Não se aplica</option>
                     {OficinasEsportivas.map((modalidade, index) =>
                         modalidade.permission.map((permissao, index) => (
                             (permissao.course == student.course) && <option key={index} value={modalidade.name}>{modalidade.name}</option>
