@@ -7,7 +7,7 @@ export const ResponsibleDashboard = ({ responsible }: { responsible: any }) => {
     const { student } = useGetAgendaEduStudentInfo({ responsible });
 
     const studentAllowToSeeCatraca = student.course == '1º Ano' || student.course == "2º Ano" || student.course == "3º Ano" || student.course == "4º Ano" || student.course == "5º Ano" || student.course == "6º Ano" || student.course == "7º Ano" || student.course == "8º Ano" || student.course == "9º Ano" || student.course == "1ª Série" || student.course == "2ª Série" || student.course == "3ª Série";
-    const studentAllowToSeeNightActivies = student.course == '1º Ano' || student.course == "2º Ano" || student.course == "3º Ano" || student.course == "4º Ano" || student.course == "5º Ano" || student.course == "1ª Série";
+    const studentAllowToSeeNightActivies = student.course == '1º Ano' || student.course == "2º Ano" || student.course == "3º Ano" || student.course == "4º Ano" || student.course == "5º Ano" || student.course == "6º Ano" || student.course == "7º Ano" || student.course == "8º Ano" || student.course == "9º Ano" || student.course == "1ª Série" || student.course == "2ª Série" || student.course == "3ª Série";
 
     return (
         <>
