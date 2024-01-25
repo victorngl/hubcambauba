@@ -1,9 +1,12 @@
+'use client'
+
 import { useGetAgendaEduStudentInfo } from "@/hooks/useGetAgendaEduStudentInfo";
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useRouter } from "next/navigation";
 import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
 import FieldErrorBoundary from "./field-error-boundary";
+import { useState } from "react";
 
 const OficinasEsportivas = [
     { id: 1, name: 'FUTSAL (misto) - 1º e 2º Ano / EF', permission: [{ course: '1º Ano' }, { course: '2º Ano' }] },
@@ -60,6 +63,7 @@ const subscriptionSchema = z.object({
 });
 
 export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { responsible: any, subscription?: NightactivitiesSubscriptionInput }) => {
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
 
     const { student } = useGetAgendaEduStudentInfo({ responsible });
@@ -81,7 +85,7 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
     });
 
     const onSubmit: SubmitHandler<NightactivitiesSubscriptionInput> = async data => {
-
+        setLoading(true);
 
         const response = await fetch('/api/strapi/', {
             cache: 'no-store',
@@ -100,6 +104,8 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
 
         const responseJson = await response.json();
 
+        setLoading(false);
+
         if (responseJson.data) {
             router.back();
         } else {
@@ -108,7 +114,6 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
     }
 
     return (
-
         <form onSubmit={handleSubmit(onSubmit)}>
             {/* include validation with required or other standard HTML validation rules */}
 
@@ -195,7 +200,7 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
             </div>
 
             <div className='text-sm font-semibold text-justify mb-3 mt-10'>*Verifique as modalidades antes de Enviar</div>
-            <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Enviar</button>
+            <button disabled={loading} type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Enviar</button>
         </form>
     )
 
