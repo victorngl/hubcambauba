@@ -17,6 +17,7 @@ export default function NightActivities() {
 
     const getNightactivitySubscription = useCallback(async () => {
         const response = await fetch('/api/strapi/', {
+            cache: 'no-store',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

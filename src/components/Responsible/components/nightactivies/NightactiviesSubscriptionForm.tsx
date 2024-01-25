@@ -1,6 +1,8 @@
 import { useGetAgendaEduStudentInfo } from "@/hooks/useGetAgendaEduStudentInfo";
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useRouter } from "next/navigation";
+import { z } from 'zod'
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const OficinasEsportivas = [
     { id: 1, name: 'FUTSAL (misto) - 1º e 2º Ano / EF', permission: [{ course: '1º Ano' }, { course: '2º Ano' }] },
@@ -43,12 +45,26 @@ const OficinasCulturais = [
 
 ];
 
+const subscriptionSchema = z.object({
+    studentId: z.string().optional(),
+    studentName: z.string(),
+    courseName: z.string(),
+    userAnswer: z.string(),
+    answered: z.boolean(),
+    answerTime: z.date(),
+    priority: z.string().min(1, { message: 'Selecione uma atividade esportiva' }).nullish(),
+    esportiveActivity: z.string().min(1, { message: 'Selecione uma atividade esportiva' }),
+    culturalActivity: z.string().min(1, { message: 'Selecione uma atividade cultural' }),
+    optionActivity: z.string().optional().nullable().default(''),
+});
+
 export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { responsible: any, subscription?: NightactivitiesSubscriptionInput }) => {
-    const router  = useRouter();
+    const router = useRouter();
 
     const { student } = useGetAgendaEduStudentInfo({ responsible });
 
     const { register, handleSubmit, formState: { errors } } = useForm<NightactivitiesSubscriptionInput>({
+        resolver: zodResolver(subscriptionSchema),
         defaultValues: {
             studentId: student.id,
             studentName: student.name,
@@ -59,14 +75,15 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
             priority: (subscription !== undefined) ? subscription.priority : '',
             esportiveActivity: (subscription !== undefined) ? subscription.esportiveActivity : '',
             culturalActivity: (subscription !== undefined) ? subscription.culturalActivity : '',
-            optionActivity: (subscription !== undefined) ? subscription.optionActivity : '',
+            optionActivity: (subscription !== undefined) ? subscription.optionActivity : null,
         }
     });
 
     const onSubmit: SubmitHandler<NightactivitiesSubscriptionInput> = async data => {
 
-        
+
         const response = await fetch('/api/strapi/', {
+            cache: 'no-store',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -86,7 +103,7 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
             router.back();
         } else {
             alert('Erro ao realizar a inscrição!');
-        }        
+        }
     }
 
     return (
@@ -105,18 +122,22 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
             </div>
 
             <div className="text-center mb-5">
+                {errors.priority && <span className="text-red-500 text-sm">{errors.priority.message}</span>}
                 <label htmlFor="courseName" className="block mb-2 text-sm font-medium text-gray-900">Deseja que a primeira opção seja</label>
                 <fieldset className="flex justify-center gap-12 items-center">
 
                     <div className="flex">
+
+
                         <input id="esportiva" {...register("priority")} type="radio" value="Esportiva" className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" />
                         <label htmlFor="esportiva" className="block ms-2  text-sm font-medium text-gray-900">
                             Esportiva
                         </label>
+
                     </div>
 
                     <div className="flex">
-                    <input id="cultural" type="radio" {...register("priority")} value="Cultural" className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" />
+                        <input id="cultural" type="radio" {...register("priority")} value="Cultural" className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" />
                         <label htmlFor="cultural" className="block ms-2 text-sm font-medium text-gray-900">
                             Cultural
                         </label>

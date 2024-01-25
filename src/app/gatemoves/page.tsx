@@ -18,6 +18,7 @@ export default function Gatemoves() {
 
     const getGatemoves = useCallback(async () => {
         const response = await fetch('/api/strapi/', {
+            cache: 'no-store',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

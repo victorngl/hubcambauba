@@ -10,6 +10,7 @@ export async function POST(req: Request) {
         const body = await req.json()
 
         const apiResponse = await fetch(`https://api.cambauba.org.br${strapiPath}`, {
+            cache: 'no-store',
             method: strapiMethod,
             headers: {
                 'Content-Type': 'application/json',
