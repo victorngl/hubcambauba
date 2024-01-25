@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { useRouter } from "next/navigation";
 import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
+import FieldErrorBoundary from "./field-error-boundary";
 
 const OficinasEsportivas = [
     { id: 1, name: 'FUTSAL (misto) - 1º e 2º Ano / EF', permission: [{ course: '1º Ano' }, { course: '2º Ano' }] },
@@ -52,7 +53,7 @@ const subscriptionSchema = z.object({
     userAnswer: z.string(),
     answered: z.boolean(),
     answerTime: z.date(),
-    priority: z.string().min(1, { message: 'Selecione uma atividade esportiva' }).nullish(),
+    priority: z.custom((value) => value === 'Esportiva' || value === 'Cultural', { message: 'Selecione uma atividade prioritária' }),
     esportiveActivity: z.string().min(1, { message: 'Selecione uma atividade esportiva' }),
     culturalActivity: z.string().min(1, { message: 'Selecione uma atividade cultural' }),
     optionActivity: z.string().optional().nullable().default(''),
@@ -72,10 +73,10 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
             userAnswer: responsible.data.attributes.email,
             answered: true,
             answerTime: new Date(),
-            priority: (subscription !== undefined) ? subscription.priority : '',
-            esportiveActivity: (subscription !== undefined) ? subscription.esportiveActivity : '',
-            culturalActivity: (subscription !== undefined) ? subscription.culturalActivity : '',
-            optionActivity: (subscription !== undefined) ? subscription.optionActivity : null,
+            priority: subscription?.priority !== undefined ? subscription.priority : '',
+            esportiveActivity: subscription?.esportiveActivity !== undefined ? subscription.esportiveActivity : '',
+            culturalActivity: subscription?.culturalActivity !== undefined ? subscription.culturalActivity : '',
+            optionActivity: subscription?.optionActivity !== undefined ? subscription.optionActivity : '',
         }
     });
 
@@ -122,7 +123,7 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
             </div>
 
             <div className="text-center mb-5">
-                {errors.priority && <span className="text-red-500 text-sm">{errors.priority.message}</span>}
+                {errors.priority && <FieldErrorBoundary>{errors.priority.message}</FieldErrorBoundary>}
                 <label htmlFor="courseName" className="block mb-2 text-sm font-medium text-gray-900">Deseja que a primeira opção seja</label>
                 <fieldset className="flex justify-center gap-12 items-center">
 
@@ -147,6 +148,7 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
             </div>
 
             <div className="mb-5">
+                {errors.esportiveActivity && <FieldErrorBoundary>{errors.esportiveActivity.message}</FieldErrorBoundary>}
                 <label htmlFor="esportiva" className="block mb-2 text-sm font-medium text-gray-900 ">Escolha a atividade esportiva:</label>
                 <select {...register("esportiveActivity")} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
 
@@ -160,6 +162,7 @@ export const NightactivitiesSubscritionForm = ({ responsible, subscription }: { 
             </div>
 
             <div className="mb-5">
+                {errors.culturalActivity && <FieldErrorBoundary>{errors.culturalActivity.message}</FieldErrorBoundary>}
                 <label htmlFor="cultural" className="block mb-2 text-sm font-medium text-gray-900 ">Escolha a atividade cultural:</label>
                 <select {...register("culturalActivity")} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
 

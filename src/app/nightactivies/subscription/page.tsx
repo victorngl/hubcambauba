@@ -1,6 +1,6 @@
 'use client'
 
-import { NightactivitiesSubscritionForm } from "@/components/Responsible/components/nightactivies/NightactiviesSubscriptionForm";
+import { NightactivitiesSubscritionForm } from "@/components/Responsible/components/nightactivies/subscription-form/NightactiviesSubscriptionForm";
 import { useUser } from "@/contexts/useCurrentUser";
 
 export default function NightactivitySubscription() {
