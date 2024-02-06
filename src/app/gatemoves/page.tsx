@@ -23,7 +23,7 @@ export default function Gatemoves() {
             headers: {
                 'Content-Type': 'application/json',
                 'method': 'GET',
-                'path': `/api/gate-moves/?sort[0]=schedule:desc&filters[student_id][$eq]=${responsibleStudent.id}`
+                'path': `/api/gate-moves/?sort[0]=schedule:desc&pagination[start]=0&pagination[limit]=30&filters[student_id][$eq]=${responsibleStudent.id}`
             },
             body: JSON.stringify({ }),
         });
@@ -35,7 +35,7 @@ export default function Gatemoves() {
         const data = await response.json();
 
         if (data.data.data.length > 0) {
-
+            console.log(data.data.data);
             setGatemoves(data.data.data);
         }
 
@@ -56,12 +56,15 @@ export default function Gatemoves() {
         <div>
             {gatemoves.length > 0 &&
                 <div>
+                    <div>
                     <h1 className="w-full text-center text-lg my-2 font-semibold shadow-sm">Movimentos da Catraca</h1>
+                    <h1 className="w-full text-center text-xs my-2 font-semibold shadow-sm">A tabela abaixo mostra os 30 últimos movimentos da catraca</h1>
+
+                    </div>
                     <div className="flex justify-center">
                         <table className="table-auto text-center border-separate border-spacing-y-2">
                             <thead>
-                                <tr>
-                                    <th>Nome</th>
+                                <tr>            
                                     <th>Movimento</th>
                                     <th>Horário</th>
                                 </tr>
@@ -70,7 +73,7 @@ export default function Gatemoves() {
                                 {gatemoves.map(gatemove => (
 
                                     <tr key={gatemove.id} className="row">
-                                        <td>{gatemove.attributes.studant_name}</td>
+                                        
                                         <td>{gatemove.attributes.type === 'OUT' ? <>Saída</> : <>Entrada</>}</td>
                                         <td>
                                             {gatemove.attributes.schedule && formatDate(gatemove.attributes.schedule)}
