@@ -14,9 +14,9 @@ export const ResponsibleDashboard = ({ responsible }: { responsible: any }) => {
             {/* create a dashboard with 2 columns side by side with icon in each card*/}
             <div className="md:flex md:flex-col-2 md:flex-row gap-3 p-2 space-y-3 md:space-y-0">
             
-                {/*{studentAllowToSeeCatraca && <SectionIcon href="/gatemoves" icon="/icons/gate.svg" title="Catraca" />}*/}
                 {studentAllowToSeeNightActivies && <SectionIcon href="/nightactivies" icon="/icons/nightactivies.svg" title="Atividades Complementares Noturnas" />}
-    
+                {studentAllowToSeeCatraca && <SectionIcon href="/gatemoves" icon="/icons/gate.svg" title="Catraca" />}
+
             </div>
 
         </>
