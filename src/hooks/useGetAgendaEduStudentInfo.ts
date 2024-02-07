@@ -6,8 +6,8 @@ export function useGetAgendaEduStudentInfo({ responsible }) {
         .map(c => `${c.attributes.name}`)[0]
 
     const separatedStrings = studentClassroomsText.split(' - ');
-    const studentClass = separatedStrings[0];
-    const studentCourse = separatedStrings[1];
+    const studentClass = separatedStrings[1];
+    const studentCourse = separatedStrings[0];
 
     const student = {
         id: responsibleStudent.id,
