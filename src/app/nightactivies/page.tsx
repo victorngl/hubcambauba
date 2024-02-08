@@ -60,10 +60,14 @@ export default function NightActivities() {
                     <h1 className="mb-5 font-bold text-gray-800">Atividades Complementares Noturnas</h1>
                     {
                         subscription === null ?
-
+                            /*
                             <Link href="/nightactivies/subscription">
                                 <button type="button" className="p-2 bg-green-500 text-white rounded mb-2">Realizar Inscrição</button>
                             </Link>
+                            */
+                            <>
+                                <button disabled type="button" className="p-2 bg-gray-500 text-white rounded mb-2">Inscrições Encerradas</button>
+                            </>
                             :
                             <NightacvivitySubscriptionCard subscription={subscription} />
                     }
