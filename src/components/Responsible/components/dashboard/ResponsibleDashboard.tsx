@@ -8,6 +8,7 @@ export const ResponsibleDashboard = ({ responsible }: { responsible: any }) => {
 
     const studentAllowToSeeCatraca = student.course == '1º Ano' || student.course == "2º Ano" || student.course == "3º Ano" || student.course == "4º Ano" || student.course == "5º Ano" || student.course == "6º Ano" || student.course == "7º Ano" || student.course == "8º Ano" || student.course == "9º Ano" || student.course == "1ª Série" || student.course == "2ª Série" || student.course == "3ª Série";
     const studentAllowToSeeNightActivies = student.course == '1º Ano' || student.course == "2º Ano" || student.course == "3º Ano" || student.course == "4º Ano" || student.course == "5º Ano" || student.course == "6º Ano" || student.course == "7º Ano" || student.course == "8º Ano" || student.course == "9º Ano" || student.course == "1ª Série" || student.course == "2ª Série" || student.course == "3ª Série";
+    const studentAllowToSeeAuthorizedCarriers = student.course == '1º Ano' || student.course == "2º Ano" || student.course == "3º Ano" || student.course == "4º Ano" || student.course == "5º Ano" || student.course == "6º Ano" || student.course == "7º Ano" || student.course == "8º Ano" || student.course == "9º Ano" || student.course == "1ª Série" || student.course == "2ª Série" || student.course == "3ª Série";
 
     console.log('CURSO: ' + student.course)
     console.log('TURMA: ' + student.class)
@@ -19,6 +20,8 @@ export const ResponsibleDashboard = ({ responsible }: { responsible: any }) => {
             
                 {studentAllowToSeeNightActivies && <SectionIcon href="/nightactivies" icon="/icons/nightactivies.svg" title="Atividades Complementares Noturnas" />}
                 {studentAllowToSeeCatraca && <SectionIcon href="/gatemoves" icon="/icons/gate.svg" title="Catraca" />}
+                {studentAllowToSeeAuthorizedCarriers && <SectionIcon href="/authorizedcarriers" icon="/icons/gate.svg" title="Portadores Autorizados" />}
+
 
             </div>
 
