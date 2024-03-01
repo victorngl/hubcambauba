@@ -20,7 +20,7 @@ export const ResponsibleDashboard = ({ responsible }: { responsible: any }) => {
             
                 {studentAllowToSeeNightActivies && <SectionIcon href="/nightactivies" icon="/icons/nightactivies.svg" title="Atividades Complementares Noturnas" />}
                 {studentAllowToSeeCatraca && <SectionIcon href="/gatemoves" icon="/icons/gate.svg" title="Catraca" />}
-                {studentAllowToSeeAuthorizedCarriers && <SectionIcon href="/authorizedcarriers" icon="/icons/gate.svg" title="Portadores Autorizados" />}
+                {/*studentAllowToSeeAuthorizedCarriers && <SectionIcon href="/authorizedcarriers" icon="/icons/gate.svg" title="Portadores Autorizados" />*/}
 
 
             </div>

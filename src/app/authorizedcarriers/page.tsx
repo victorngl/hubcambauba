@@ -1,6 +1,5 @@
 'use client'
 
-import { NightacvivitySubscriptionCard } from "@/components/Responsible/components/nightactivies/NightactivitySubscriptionCard";
 import { Loading } from "@/components/ui/utils/Loading";
 import { useUser } from "@/contexts/useCurrentUser";
 import { useGetAgendaEduStudentInfo } from "@/hooks/useGetAgendaEduStudentInfo";
