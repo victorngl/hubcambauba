@@ -17,7 +17,6 @@ export default function OlympicShirtCard({ shirt, key }: { shirt: OlympicShirt, 
             <div className="text-left md:text-center md:w-1/2 space-y-1">
                 <p className="text-gray-800">Tamanho da Camisa: <strong>{shirt.attributes.shirt_size}</strong></p>
                 <p className="text-gray-800 text-xs font-semibold">Usuário que respondeu: {shirt.attributes.user_answer}</p>
-
                 {shirt.attributes.student_shirt ? <p className="text-sm bg-blue-900 text-white font-bold p-1 rounded-lg text-center">Camisa do Aluno</p> : <a className="text-sm bg-blue-700 text-white font-bold p-1 rounded-lg">Camisa Extra</a>}
             </div>
 
