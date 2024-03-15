@@ -24,18 +24,19 @@ const shirtSchema = z.object({
 });
 
 const shirtSizes = [
-    { id: 1, name: "4" },
-    { id: 2, name: "6" },
-    { id: 3, name: "8" },
-    { id: 4, name: "10" },
-    { id: 5, name: "12" },
-    { id: 6, name: "14" },
-    { id: 7, name: "PP" },
-    { id: 8, name: "P" },
-    { id: 9, name: "M" },
-    { id: 10, name: "G" },
-    { id: 11, name: "GG" },
-    { id: 12, name: "52" },
+    { id: 1, name: "2" },
+    { id: 2, name: "4" },
+    { id: 3, name: "6" },
+    { id: 4, name: "8" },
+    { id: 5, name: "10" },
+    { id: 6, name: "12" },
+    { id: 7, name: "14" },
+    { id: 8, name: "PP" },
+    { id: 9, name: "P" },
+    { id: 10, name: "M" },
+    { id: 11, name: "G" },
+    { id: 12, name: "GG" },
+    { id: 13, name: "52" },
 ];
 
 
