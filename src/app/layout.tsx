@@ -5,7 +5,7 @@ import { UserProvider } from '../contexts/useCurrentUser'
 import { Suspense } from 'react'
 
 import ResponsibleLayout from '../components/Responsible/components/layout/ResponsibleLayout'
-import { Loading } from '@/components/ui/utils/Loading'
+import { Loading } from '@/components/ui/utils/loading'
 
 const inter = Inter({ subsets: ['latin'] })
 

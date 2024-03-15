@@ -1,6 +1,6 @@
 'use client'
 
-import { Loading } from "@/components/ui/utils/Loading";
+import { Loading } from "@/components/ui/utils/loading";
 import { useUser } from "@/contexts/useCurrentUser";
 import { useCallback, useEffect, useState } from "react";
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { Loading } from "@/components/ui/utils/Loading";
+import { Loading } from "@/components/ui/utils/loading";
 import { useUser } from "@/contexts/useCurrentUser";
 import { useGetAgendaEduStudentInfo } from "@/hooks/useGetAgendaEduStudentInfo";
 import Link from "next/link";
@@ -35,7 +35,7 @@ export default function AuthorizedCarriersHome() {
 
         const data = await response.json();
 
-        console.log(data.data.data);
+        //console.log(data.data.data.length);
 
         if (data.data.data.length > 0) {
             setAuthorizedCarriers(data.data.data);
