@@ -86,7 +86,7 @@ export default function OlympicsHome() {
                             <Link href="/olympics/shirt/student">
                                 <button className="p-4 text-white font-bold bg-blue-600 rounded w-full">
 
-                                    Escolher camisa do aluno
+                                    Escolher o tamanho da camisa do aluno
 
                                 </button>
                             </Link>

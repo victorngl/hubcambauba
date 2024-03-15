@@ -9,5 +9,4 @@ export type OlympicShirt = {
     answer_time: string | Date;
     student_shirt: boolean;
     answered: boolean;
-    participate?: string;
 }

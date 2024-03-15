@@ -15,7 +15,6 @@ export default function OlympicShirtCard({ shirt, key }: { shirt: OlympicShirt, 
             </div>
 
             <div className="text-left md:text-center md:w-1/2 space-y-1">
-                <p className="text-gray-800">Participação: <strong>{shirt.attributes.participate === "true" ? "Sim":"Não" }</strong></p>
                 <p className="text-gray-800">Tamanho da Camisa: <strong>{shirt.attributes.shirt_size}</strong></p>
                 <p className="text-gray-800 text-xs font-semibold">Usuário que respondeu: {shirt.attributes.user_answer}</p>
 

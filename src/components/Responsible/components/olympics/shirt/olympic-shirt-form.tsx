@@ -21,7 +21,6 @@ const shirtSchema = z.object({
     answered: z.boolean(),
     answer_time: z.date(),
     student_shirt: z.boolean().nullable(),
-    participate: z.string({ invalid_type_error: "Você deve responder à pergunta" }),
 });
 
 const shirtSizes = [
@@ -58,23 +57,8 @@ export const OlympicShirtForm = ({ responsible, shirt, studentAccess }: { respon
             answer_time: new Date(),
             student_shirt: studentAccess,
             answered: shirt ? shirt.attributes.answered : true,
-            participate: shirt ? shirt.attributes.participate : null,
         }
     });
-
-    /*
-    const participateWatch = watch("participate")
-
-    useEffect(() => {
-        if (participateWatch === 'false') {
-            setValue('shirt_size', 'Não se aplica');
-        }
-        else if (participateWatch === 'true') {
-            setValue('shirt_size', '');
-        }
-
-    }, [participateWatch, setValue]);
-    */
 
     const onSubmit: SubmitHandler<OlympicShirt> = async data => {
         setLoading(true);
@@ -124,34 +108,7 @@ export const OlympicShirtForm = ({ responsible, shirt, studentAccess }: { respon
                 <input disabled type="className" {...register("class_name")} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
             </div>
 
-            
-            <div className="text-center mb-5">
-                {errors.participate && <FieldErrorBoundary>{errors.participate.message}</FieldErrorBoundary>}
-                <label htmlFor="participate" className="block mb-5 text-sm font-bold text-gray-900">O aluno participará da XVI Olimpíada das Bandeiras ?</label>
-                <fieldset className="flex justify-center gap-12 items-center">
-
-                    <div className="flex">
-
-
-                        <input id="esportiva" {...register("participate")} type="radio" value="true" className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" />
-                        <label htmlFor="esportiva" className="block ms-2  text-sm font-bold text-gray-900">
-                            Sim
-                        </label>
-
-                    </div>
-
-                    <div className="flex">
-                        <input id="cultural" type="radio" {...register("participate")} value="false" className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" />
-                        <label htmlFor="cultural" className="block ms-2 text-sm font-bold text-gray-900">
-                            Não
-                        </label>
-                    </div>
-
-                </fieldset>
-            </div>
-                
-
-
+        
             <div className="w-full mb-5 text-center flex justify-center">
                 <Image className="rounded-lg" src="/olympics/shirtsize.png" width={450} height={24} alt="olympic-shirt" />
             </div>
