@@ -19,7 +19,7 @@ export const ResponsibleDashboard = ({ responsible }: { responsible: any }) => {
             {/* create a dashboard with 2 columns side by side with icon in each card*/}
             <div className="md:flex md:flex-col-2 md:flex-row gap-3 p-2 space-y-3 md:space-y-0">
 
-                {studentAllowToSeeOlympics && <SectionIcon href="/olympics" icon="/icons/olympics.svg" title="2XVI Olimpíadas das Bandeiras" />}
+                {studentAllowToSeeOlympics && <SectionIcon href="/olympics" icon="/icons/olympics.svg" title="XVI Olimpíadas das Bandeiras" />}
                 {studentAllowToSeeNightActivies && <SectionIcon href="/nightactivies" icon="/icons/nightactivies.svg" title="Atividades Complementares Noturnas" />}
                 {studentAllowToSeeCatraca && <SectionIcon href="/gatemoves" icon="/icons/gate.svg" title="Catraca" />}
                 {/*studentAllowToSeeAuthorizedCarriers && <SectionIcon href="/authorizedcarriers" icon="/icons/gate.svg" title="Portadores Autorizados" />*/}
