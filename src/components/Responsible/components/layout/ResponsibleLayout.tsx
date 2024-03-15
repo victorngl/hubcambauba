@@ -4,7 +4,7 @@ import { useUser } from "@/contexts/useCurrentUser";
 import { ResponsibleNavbar } from "../navbar/ResponsibleNavbar";
 import StudentInfo from "../student/StudentInfo";
 import useAgendaEduToken from "@/hooks/useAgendaEduToken";
-import { Loading } from "@/components/ui/utils/loading";
+import { Loading } from "@/components/ui/utils/loading2";
 import NotAllowed from "@/components/ui/utils/notallowed/NotAllowed";
 
 export default function ResponsibleLayout({ children }) {
