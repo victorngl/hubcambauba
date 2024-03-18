@@ -30,6 +30,9 @@ export const ResponsibleDashboard = ({ responsible }: { responsible: any }) => {
     student.course == "2ª Série" || 
     student.course == "3ª Série";
 
+    const studentAllowToSeeSolicitation = student.course == "1ª Série"
+
+
     console.log('CURSO: ' + student.course)
     console.log('TURMA: ' + student.class)
 
@@ -42,8 +45,10 @@ export const ResponsibleDashboard = ({ responsible }: { responsible: any }) => {
                 {studentAllowToSeeNightActivies && <SectionIcon href="/nightactivies" icon="/icons/nightactivies.svg" title="Atividades Complementares Noturnas" />}
                 {studentAllowToSeeCatraca && <SectionIcon href="/gatemoves" icon="/icons/gate.svg" title="Catraca" />}
                 {/*studentAllowToSeeAuthorizedCarriers && <SectionIcon href="/authorizedcarriers" icon="/icons/gate.svg" title="Portadores Autorizados" />*/}
+                {studentAllowToSeeSolicitation && <SectionIcon href="/solicitations" icon="/icons/solicitation.svg" title="Solicitações" />}
 
             </div>
+            
 
         </>
 
