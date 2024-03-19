@@ -10,7 +10,7 @@ export const SectionIcon = ({ icon, title, href }) => {
                     <div className="flex items-center justify-center w-12 h-12 mb-2 rounded-full bg-indigo-100">
                         <Image src={icon} width={24} height={24} alt="attendance" />
                     </div>
-                    <p className="text-sm font-semibold text-gray-700">{title}</p>
+                    <p className="text-xs font-semibold text-gray-700 text-center">{title}</p>
                 </div>
                 </Link>
             </div>

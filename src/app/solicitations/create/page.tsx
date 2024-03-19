@@ -1,12 +1,12 @@
 'use client'
 
-import { flattenAttributes } from "@/app/lib/utils";
 import { SolicitationCreateForm } from "@/components/Responsible/components/solicitations/solicitation-create-form";
 import Loading from "@/components/ui/utils/loading";
 import { useUser } from "@/contexts/useCurrentUser";
 import { useGetAgendaEduStudentInfo } from "@/hooks/useGetAgendaEduStudentInfo";
 import { SolicitationType } from "@/types/solicitations";
 import { useCallback, useEffect, useState } from "react";
+import { flattenAttributes } from "@/lib/utils/flatten-attributes";
 
 export default function SolicitationCreatePage() {
     const { user } = useUser();
@@ -37,7 +37,7 @@ export default function SolicitationCreatePage() {
 
         const flattenedData = flattenAttributes(data.data.data);
 
-        if (data.data.data.length > 0) {
+        if (data?.data?.data?.length > 0) {
             setSolicitationsTypes(flattenedData);
         }
 

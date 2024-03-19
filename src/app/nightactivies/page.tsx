@@ -33,7 +33,7 @@ export default function NightActivities() {
 
         const data = await response.json();
 
-        if (data.data.data.length > 0) {
+        if (data?.data?.data?.length > 0) {
             setSubscription(data.data.data[0].attributes);
         }
 

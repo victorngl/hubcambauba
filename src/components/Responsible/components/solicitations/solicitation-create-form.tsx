@@ -8,21 +8,21 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import FieldErrorBoundary from "../../../ui/utils/field-error-boundary";
 import { useState } from "react";
 import { Solicitation, SolicitationType } from "@/types/solicitations";
-import { generateRandomNumber } from "@/app/lib/utils";
+import { generateRandomNumber } from "@/lib/utils/generate-random-number";
 
 const solicitationSchema = z.object({
     solicitation_id: z.string().optional(),
     requester_email: z.string(),
     requester_name: z.string(),
-    subject: z.string({ invalid_type_error: "O assunto é obrigatório." }),
+    subject: z.string({ invalid_type_error: "O assunto é obrigatório." }).min(1, { message: 'Campo obrigatório' }).max(100, { message: 'Máximo de 100 caracteres' }),   
     status: z.string(),
     priority: z.string(),
-    solicitation_type: z.string().min(1, 'Selecione um tipo de solicitação').transform(value => Number(value)),
+    solicitation_type: z.string( { invalid_type_error: "Selecione um tipo de solicitação."}).min(1, 'Selecione um tipo de solicitação').transform(value => Number(value)),
     student_id: z.string(),
     student_name: z.string(),
     student_course: z.string(),
     student_class: z.string(),
-    description: z.string({ invalid_type_error: "A descrição é obrigatório." }),
+    description: z.string({ invalid_type_error: "A descrição é obrigatório." }).min(1, { message: 'Campo obrigatório' }).max(500, { message: 'Máximo de 500 caracteres' }),
 });
 
 
@@ -41,7 +41,7 @@ export const SolicitationCreateForm = ({ responsible, solicitation, solicitation
             subject: solicitation ? solicitation?.subject : null,
             status: solicitation ? solicitation?.status : 'Aberto',
             priority: solicitation ? solicitation?.priority : 'Normal',
-            solicitation_type: solicitation ? solicitation?.solicitation_type : '',
+            solicitation_type: solicitation ? solicitation?.solicitation_type : null,
             student_id: student.id,
             student_name: student.name,
             student_course: student.course,
@@ -98,6 +98,11 @@ export const SolicitationCreateForm = ({ responsible, solicitation, solicitation
             <div className="mb-5">
                 <label htmlFor="courseName" className="block mb-2 text-sm font-bold text-gray-900">Série</label>
                 <input disabled type="courseName" {...register("student_course")} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+            </div>
+
+            <div className="mb-5">
+                <label htmlFor="classsName" className="block mb-2 text-sm font-bold text-gray-900">Turma</label>
+                <input disabled type="className" {...register("student_class")} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
             </div>
 
             <div className="mb-5">

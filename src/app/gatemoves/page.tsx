@@ -34,8 +34,7 @@ export default function Gatemoves() {
 
         const data = await response.json();
 
-        if (data.data.data.length > 0) {
-            console.log(data.data.data);
+        if (data?.data?.data?.length > 0) {
             setGatemoves(data.data.data);
         }
 

@@ -1,10 +1,11 @@
-import { Solicitation } from "@/types/solicitations";
+import { Solicitation, SolicitationType } from "@/types/solicitations";
 import Image from "next/image";
-export default function SolicitationCard({ solicitation, key }: { solicitation: Solicitation, key: number }) {
+import Link from "next/link";
+export default function SolicitationCard({ solicitation }: { solicitation: Solicitation }) {
     return (
 
 
-        <div key={key} className="flex items-center md:justify-center space-x-3 border-zinc-400 border-2 rounded my-2 p-4 w-full">
+        <div className="flex items-center md:justify-center space-x-3 border-zinc-400 border-2 rounded my-2 p-4 w-full">
 
             <div>
                 <div className="flex flex-col items-center justify-center w-full rounded-lg">
@@ -17,8 +18,16 @@ export default function SolicitationCard({ solicitation, key }: { solicitation: 
             <div className="text-left md:text-center md:w-1/2 space-y-1">
                 <p className="text-gray-800">Solicitação: <strong>#{solicitation.solicitation_id}</strong></p>
                 <p className="text-gray-800">Tipo da Solicitação: <strong>{solicitation.solicitation_type.name}</strong></p>
-                <p className="text-gray-800 text-xs font-semibold">Solicitante: {solicitation.requester_name}</p>
+                <p className="text-gray-800 font-semibold">Status: {solicitation.status}</p>
                 <p className="text-gray-800 text-xs font-semibold">Data da Solicitação: {solicitation.createdAt}</p>
+
+                {solicitation.status === "Encerrada" ?
+                    <button disabled={true} className="w-full bg-gray-500 my-1 p-2 text-white font-bold rounded">Solicitação Encerrada</button>
+                    :
+                    <Link href={`/solicitations/${solicitation.solicitation_id}`}>
+                        <button className="w-full bg-blue-500 my-1 p-2 text-white font-bold rounded">Exibir solicitação</button>
+                    </Link>
+                }
             </div>
 
 
