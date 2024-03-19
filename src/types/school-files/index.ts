@@ -1,9 +1,9 @@
-type StrapiFile = {
+type SchoolFile = {
     id?: any;
     name: string;
-    path: string;
-    type?: string;
+    url: string;
     html?: string;
+    icon?: string;
     createdAt?: string;
     updatedAt?: string;
 };

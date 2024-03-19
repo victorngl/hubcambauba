@@ -5,11 +5,12 @@ import { useUser } from "@/contexts/useCurrentUser";
 import { useGetAgendaEduStudentInfo } from "@/hooks/useGetAgendaEduStudentInfo";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
-import SolicitationCard from "@/components/Responsible/components/solicitations/solicitations-card";
 import { flattenAttributes } from "@/lib/utils/flatten-attributes";
+import SchoolFilesPageHeader from "@/components/Responsible/components/school-files/school-files-page-header";
+import SchoolFileCard from "@/components/Responsible/components/school-files/school-files-card";
 
 
-export default function FilesHome() {
+export default function SchoolFilesHome() {
 
     const { user } = useUser();
 
@@ -17,7 +18,7 @@ export default function FilesHome() {
 
     const [loading, setLoading] = useState(true);
 
-    const [files, setFiles] = useState<StrapiFile[]>(null);
+    const [files, setFiles] = useState<SchoolFile[]>(null);
 
     const getFiles = useCallback(async () => {
         const response = await fetch('/api/strapi/', {
@@ -26,7 +27,7 @@ export default function FilesHome() {
             headers: {
                 'Content-Type': 'application/json',
                 'method': 'GET',
-                'path': `/api/files/`
+                'path': `/api/school-files/`
             },
             body: JSON.stringify({}),
         });
@@ -37,10 +38,9 @@ export default function FilesHome() {
 
         const data = await response.json();
 
-        const flattenedData = flattenAttributes(data.data.data);
-
-
         if (data?.data?.data?.length > 0) {
+            const flattenedData = flattenAttributes(data.data.data);
+            console.log(flattenedData)
             setFiles(flattenedData);
         }
 
@@ -62,17 +62,18 @@ export default function FilesHome() {
             <div className="p-2 w-full">
                 <div className="text-center">
 
-                    <h1> Arquivos </h1>
-
+                    <SchoolFilesPageHeader />
 
                     {
 
                         files !== null &&
                         files.map((file, index) => (
                             <>
-                            <a>anything</a>
-                                                       {/* <SolicitationCard solicitation={solicitation} key={index} /> */}
-
+                                <div key={index}>
+                                    <Link className="flex gap-4 items-center" href={file.url}>
+                                        <SchoolFileCard file={file} />
+                                    </Link>
+                                </div>
                             </>
                         ))
                     }
