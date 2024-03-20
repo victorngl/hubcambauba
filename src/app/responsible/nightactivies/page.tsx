@@ -61,7 +61,7 @@ export default function NightActivities() {
                     {
                         subscription === null ?
                             /*
-                            <Link href="/nightactivies/subscription">
+                            <Link href="/responsible/nightactivies/subscription">
                                 <button type="button" className="p-2 bg-green-500 text-white rounded mb-2">Realizar Inscrição</button>
                             </Link>
                             */

@@ -35,13 +35,12 @@ export const ResponsibleDashboard = ({ responsible }: { responsible: any }) => {
             {/* create a dashboard with 2 columns side by side with icon in each card*/}
             <div className="grid grid-cols-2 items-center gap-3 p-2 md:space-y-0">
 
-                {studentAllowToSeeOlympics && <SectionIcon href="/olympics" icon="/icons/olympics.svg" title="XVI Olimpíadas das Bandeiras" />}
-                {studentAllowToSeeNightActivies && <SectionIcon href="/nightactivies" icon="/icons/nightactivies.svg" title="Atividades Complementares Noturnas" />}
-                {studentAllowToSeeSolicitation && <SectionIcon href="/solicitations" icon="/icons/solicitation.svg" title="Solicitações" />}
-
-                {studentAllowToSeeCatraca && <SectionIcon href="/gatemoves" icon="/icons/gate.svg" title="Catraca" />}
+                {studentAllowToSeeOlympics && <SectionIcon href="/responsible/olympics" icon="/icons/olympics.svg" title="XVI Olimpíadas das Bandeiras" />}
+                {studentAllowToSeeNightActivies && <SectionIcon href="/responsible/nightactivies" icon="/icons/nightactivies.svg" title="Atividades Complementares Noturnas" />}
+                {studentAllowToSeeSolicitation && <SectionIcon href="/responsible/solicitations" icon="/icons/solicitation.svg" title="Solicitações" />}
+                {studentAllowToSeeCatraca && <SectionIcon href="/responsible/gatemoves" icon="/icons/gate.svg" title="Catraca" />}
                 {/*studentAllowToSeeAuthorizedCarriers && <SectionIcon href="/authorizedcarriers" icon="/icons/gate.svg" title="Portadores Autorizados" />*/}
-                {studentAllowToSeeFiles && <SectionIcon href="/school-files" icon="/icons/files-black.svg" title="Arquivos" />}
+                {studentAllowToSeeFiles && <SectionIcon href="/responsible/school-files" icon="/icons/files-black.svg" title="Arquivos" />}
 
             </div>
             

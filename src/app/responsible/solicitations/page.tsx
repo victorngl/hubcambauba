@@ -61,7 +61,7 @@ export default function SolicitationHome() {
                 <div className="text-center">
 
                     <div className="flex flex-col w-full justify-center space-y-2">
-                        <Link href="/solicitations/create/">
+                        <Link href="/responsible/solicitations/create/">
                             <button className="p-4 text-white font-bold bg-blue-600 rounded w-full">
                                 Abrir solicitação
                             </button>

@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 export default function SolicitationCommentaryCard({ commentary }: { commentary: SolicitationCommentary }) {
 
+    console.log(commentary);
+    
     return (
 
         <div className="flex items-center space-x-3 border-zinc-400 border-2 rounded my-2 p-4 w-full">
@@ -28,7 +30,7 @@ export default function SolicitationCommentaryCard({ commentary }: { commentary:
                                                 <Image src="/icons/attachment.svg" width={20} height={20} alt="attendance" />
                                             </div>
 
-                                            <Link href={attachment.url} target="_blank">
+                                            <Link href={process.env.NEXT_PUBLIC_STRAPI_URL + attachment.url} target="_blank">
                                                 <div className="text-blue-600 underline" rel="noreferrer">{attachment.name.substring(0, 30)}{attachment.name.length>30&&'...'}</div>
                                             </Link>
 

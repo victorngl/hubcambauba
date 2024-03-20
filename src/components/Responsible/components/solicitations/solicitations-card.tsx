@@ -24,7 +24,7 @@ export default function SolicitationCard({ solicitation }: { solicitation: Solic
                 {solicitation.status === "Encerrada" ?
                     <button disabled={true} className="w-full bg-gray-500 my-1 p-2 text-white font-bold rounded">Solicitação Encerrada</button>
                     :
-                    <Link href={`/solicitations/${solicitation.solicitation_id}`}>
+                    <Link href={`/responsible/solicitations/${solicitation.solicitation_id}`}>
                         <button className="w-full bg-blue-500 my-1 p-2 text-white font-bold rounded">Exibir solicitação</button>
                     </Link>
                 }

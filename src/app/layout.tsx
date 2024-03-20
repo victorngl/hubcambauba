@@ -6,6 +6,7 @@ import { Suspense } from 'react'
 
 import ResponsibleLayout from '../components/Responsible/components/layout/ResponsibleLayout'
 import Loading from '@/components/ui/utils/loading'
+import AppLayout from '@/components/ui/utils/layout/app-layout'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,9 +28,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <Suspense fallback={<Loading />}>
           <UserProvider>
-            <ResponsibleLayout>
+            <AppLayout>
               {children}
-            </ResponsibleLayout>
+            </AppLayout>
           </UserProvider>
         </Suspense>
       </body>

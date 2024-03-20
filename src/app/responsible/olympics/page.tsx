@@ -83,7 +83,7 @@ export default function OlympicsHome() {
 
                     <div className="flex flex-col w-full justify-center space-y-2">
                         {!studentShirtButton &&
-                            <Link href="/olympics/shirt/student">
+                            <Link href="/responsible/olympics/shirt/student">
                                 <button className="p-4 text-white font-bold bg-blue-600 rounded w-full">
 
                                     Escolher o tamanho da camisa do aluno
@@ -95,7 +95,7 @@ export default function OlympicsHome() {
                         {/*
                         
                         <button className="p-4 text-white font-bold bg-green-400 rounded">
-                            <Link href="/olympics/shirt/responsible">
+                            <Link href="/responsible/olympics/shirt/responsible">
                                 Adquirir camisa extra
                             </Link>
                         </button>
