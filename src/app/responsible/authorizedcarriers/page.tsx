@@ -35,8 +35,6 @@ export default function AuthorizedCarriersHome() {
 
         const data = await response.json();
 
-        //console.log(data.data.data.length);
-
         if (data.data.data.length > 0) {
             setAuthorizedCarriers(data.data.data);
         }

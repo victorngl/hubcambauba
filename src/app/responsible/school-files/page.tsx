@@ -40,7 +40,6 @@ export default function SchoolFilesHome() {
 
         if (data?.data?.data?.length > 0) {
             const flattenedData = flattenAttributes(data.data.data);
-            console.log(flattenedData)
             setFiles(flattenedData);
         }
 

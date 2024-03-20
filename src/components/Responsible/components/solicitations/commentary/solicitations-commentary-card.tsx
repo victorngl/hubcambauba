@@ -2,8 +2,6 @@ import { SolicitationCommentary } from "@/types/solicitations";
 import Image from "next/image";
 import Link from "next/link";
 export default function SolicitationCommentaryCard({ commentary }: { commentary: SolicitationCommentary }) {
-
-    console.log(commentary);
     
     return (
 
