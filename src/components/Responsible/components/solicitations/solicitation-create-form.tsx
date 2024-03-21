@@ -72,7 +72,7 @@ export const SolicitationCreateForm = ({ responsible, solicitation, solicitation
             headers: {
                 'Content-Type': 'application/json',
                 'method': 'POST',
-                'path': `/api/solicitations/`
+                'path': `/api/solicitations?populate=*`
             },
             body: JSON.stringify({ data }),
         });
