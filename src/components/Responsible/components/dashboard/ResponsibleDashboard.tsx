@@ -1,6 +1,6 @@
 
 import Link from 'next/link';
-import { SectionIcon } from './SectionIcon';
+import { SectionIcon } from '../../../ui/icons/section-icon';
 import { useGetAgendaEduStudentInfo } from '@/hooks/useGetAgendaEduStudentInfo';
 import { checkCourse, checkCourseElementarySchoolOne, checkCourseElementarySchoolTwo, checkCourseHighSchool } from '@/lib/utils/check-course';
 export const ResponsibleDashboard = ({ responsible }: { responsible: any }) => {

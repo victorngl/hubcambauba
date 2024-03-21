@@ -2,18 +2,14 @@
 
 import Loading from "@/components/ui/utils/loading";
 import { useUser } from "@/contexts/useCurrentUser";
-import { useGetAgendaEduStudentInfo } from "@/hooks/useGetAgendaEduStudentInfo";
-import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
-import SolicitationCard from "@/components/Responsible/components/solicitations/solicitations-card";
+import SolicitationCard from "@/components/coordinator/components/solicitations/solicitations-card";
 import { Solicitation } from "@/types/solicitations";
 import { flattenAttributes } from "@/lib/utils/flatten-attributes";
 
 export default function SolicitationHome() {
 
     const { user } = useUser();
-
-    const { student } = useGetAgendaEduStudentInfo({ responsible: user });
 
     const [loading, setLoading] = useState(true);
 
@@ -26,7 +22,7 @@ export default function SolicitationHome() {
             headers: {
                 'Content-Type': 'application/json',
                 'method': 'GET',
-                'path': `/api/solicitations/?filters[student_id][$eq]=${student.id}&sort=status&populate=*`
+                'path': `/api/solicitations/?filters[solicitation_type][department][responsible_email][$eq]=${user.data.attributes.email}&sort=status&populate=*`
             },
             body: JSON.stringify({}),
         });
@@ -45,7 +41,7 @@ export default function SolicitationHome() {
         setLoading(false);
 
     }
-        , [student.id]);
+        , [user.data.attributes.email]);
 
     useEffect(() => {
         getSolicitations();
@@ -59,14 +55,7 @@ export default function SolicitationHome() {
         <>
             <div className="p-2 w-full">
                 <div className="text-center">
-
-                    <div className="flex flex-col w-full justify-center space-y-2">
-                        <Link href="/responsible/solicitations/create/">
-                            <button className="p-4 text-white font-bold bg-blue-600 rounded w-full">
-                                Abrir solicitação
-                            </button>
-                        </Link>
-                    </div>
+                    <h1 className="text-xl font-bold text-gray-800">Solicitações</h1>
 
                     {
                         solicitations !== null &&

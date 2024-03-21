@@ -8,8 +8,6 @@ export default function SolicitationCommentaryCard({ commentary }: { commentary:
 
         <div className="flex items-center space-x-3 border-zinc-400 border-2 rounded my-2 p-4 w-full">
 
-
-
             <div className="text-left space-y-1 md:space-y-4 w-full">
                 <p className="text-gray-800 text-xs">Usuário: <strong>{commentary.user_name}</strong></p>
                 <p className="text-gray-800 text-xs">Data da Resposta: <strong>{DateParser(commentary.createdAt)}</strong></p>

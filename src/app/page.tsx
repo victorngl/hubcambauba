@@ -1,5 +1,6 @@
 'use client'
 
+import { CoordinatorDashboard } from "@/components/coordinator/components/dashboard/coordinator-dashboard";
 import { ResponsibleDashboard } from "@/components/Responsible/components/dashboard/ResponsibleDashboard";
 import { useUser } from "@/contexts/useCurrentUser";
 
@@ -16,7 +17,7 @@ export default function AppHome() {
   if (user.data.attributes.role === "coordinator")
     return (
       <>
-        <h1>Bem vindo Coordenador!</h1>
+        <CoordinatorDashboard coordinator={user} />
       </>
     )
 }

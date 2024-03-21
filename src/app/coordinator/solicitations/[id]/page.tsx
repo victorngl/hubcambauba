@@ -2,11 +2,10 @@
 
 import Loading from "@/components/ui/utils/loading";
 import { useUser } from "@/contexts/useCurrentUser";
-import { useGetAgendaEduStudentInfo } from "@/hooks/useGetAgendaEduStudentInfo";
 import { useCallback, useEffect, useState } from "react";
 import { Solicitation } from "@/types/solicitations";
 import { flattenAttributes } from "@/lib/utils/flatten-attributes";
-import { SolicitationShowForm } from "@/components/Responsible/components/solicitations/solicitation-show-form";
+import { SolicitationShowForm } from "@/components/coordinator/components/solicitations/solicitation-show-form";
 
 export default function SolicitationShowHome({ params }: { params: { id: string } }) {
 
@@ -15,7 +14,6 @@ export default function SolicitationShowHome({ params }: { params: { id: string 
     const [loading, setLoading] = useState(true);
 
     const [solicitation, setSolicitation] = useState<Solicitation>(null);
-
 
     const getSolicitation = useCallback(async () => {
 
@@ -43,7 +41,8 @@ export default function SolicitationShowHome({ params }: { params: { id: string 
 
         setLoading(false);
 
-    }, [params.id]);
+    }
+        , [params.id]);
 
     useEffect(() => {
         getSolicitation();

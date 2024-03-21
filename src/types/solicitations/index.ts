@@ -20,6 +20,7 @@ export type Solicitation = {
 export type SolicitationType = {
     id?: any;
     name: string;
+    department: SolicitationDepartment;
     createdAt?: string;
     updatedAt?: string;
 }
@@ -32,4 +33,11 @@ export type SolicitationCommentary = {
     attachment: any;
     createdAt?: string;
     updatedAt?: string;
+}
+
+export type SolicitationDepartment = {
+    id?: any;
+    name: string;
+    responsible_email: string;
+    responsible_name: string;
 }

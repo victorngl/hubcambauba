@@ -3,7 +3,7 @@ import { Solicitation, SolicitationType } from "@/types/solicitations";
 import Image from "next/image";
 import Link from "next/link";
 export default function SolicitationCard({ solicitation }: { solicitation: Solicitation }) {
-
+    
     const solicitationStatus = solicitation.status;
     var statusClassname;
 
@@ -18,9 +18,9 @@ export default function SolicitationCard({ solicitation }: { solicitation: Solic
     }
 
     const createdAtFormattedDate = DateParser(solicitation.createdAt);
-    
-    return (
 
+
+    return (
         <div className="flex items-center md:justify-center space-x-3 border-zinc-400 border-2 rounded my-2 p-4 w-full">
 
             <div>
@@ -31,14 +31,18 @@ export default function SolicitationCard({ solicitation }: { solicitation: Solic
                 </div>
             </div>
 
-            <div className="text-left md:text-center md:w-1/2 space-y-1">
-                <p className="text-gray-800">Solicitação: <strong>#{solicitation.solicitation_id}</strong></p>
-                <p className="text-gray-800">Tipo da Solicitação: <strong>{solicitation.solicitation_type.name}</strong></p>
+            <div className="text-left md:w-full space-y-1">
+                <p className="text-gray-800 font-semibold">Solicitação: <strong>#{solicitation.solicitation_id}</strong></p>
+                <p className="text-gray-800 font-semibold">Data da Solicitação: {createdAtFormattedDate}</p>
+
+                <p className="text-gray-800 font-semibold">Aluno: {solicitation.student_name}</p>
+                <p className="text-gray-800 font-semibold">Turma: {solicitation.student_class}</p>
+                <p className="text-gray-800 font-semibold">Tipo da Solicitação: {solicitation.solicitation_type.name}</p>
+
                 <p className="text-gray-800 font-semibold flex space-x-1"><div>Status:</div><div className={statusClassname}>{solicitation.status}</div></p>
-                <p className="text-gray-800 text-xs font-semibold">Data da Solicitação: {createdAtFormattedDate}</p>
 
 
-                <Link href={`/responsible/solicitations/${solicitation.solicitation_id}`}>
+                <Link href={`/coordinator/solicitations/${solicitation.solicitation_id}`}>
                     <button className="w-full bg-blue-500 my-1 p-2 text-white font-bold rounded">Exibir solicitação</button>
                 </Link>
 
