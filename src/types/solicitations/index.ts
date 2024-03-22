@@ -26,7 +26,7 @@ export type SolicitationType = {
 }
 
 export type SolicitationCommentary = {
-    solicitation: Solicitation | string;
+    solicitation: Solicitation | string | number;
     description: string;
     user_email: string;
     user_name: string;
