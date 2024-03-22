@@ -46,7 +46,7 @@ export default function SolicitationShowHome({ params }: { params: { id: string 
 
     useEffect(() => {
         getSolicitation();
-    }, []);
+    }, [getSolicitation]);
 
 
     if (loading) {

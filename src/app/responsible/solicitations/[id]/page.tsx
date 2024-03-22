@@ -1,15 +1,12 @@
 'use client'
 
 import Loading from "@/components/ui/utils/loading";
-import { useUser } from "@/contexts/useCurrentUser";
 import { useCallback, useEffect, useState } from "react";
 import { Solicitation } from "@/types/solicitations";
 import { flattenAttributes } from "@/lib/utils/flatten-attributes";
 import { SolicitationShowForm } from "@/components/Responsible/components/solicitations/solicitation-show-form";
 
 export default function SolicitationShowHome({ params }: { params: { id: string } }) {
-    const { user } = useUser();
-
     const [loading, setLoading] = useState(true);
 
     const [solicitation, setSolicitation] = useState<Solicitation>(null);
@@ -55,7 +52,7 @@ export default function SolicitationShowHome({ params }: { params: { id: string 
                 <div className="p-2 w-full">
                     <div className="text-center">
                         <h1 className="mb-2 font-bold text-gray-800">Solicitação #{solicitation.solicitation_id}</h1>
-                        <SolicitationShowForm responsible={user} solicitation={solicitation}  />
+                        <SolicitationShowForm solicitation={solicitation}  />
                     </div>
                 </div>
             }
