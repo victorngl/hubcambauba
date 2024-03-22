@@ -8,6 +8,8 @@ import { useCallback, useEffect, useState } from "react";
 import SolicitationCard from "@/components/Responsible/components/solicitations/solicitations-card";
 import { Solicitation } from "@/types/solicitations";
 import { flattenAttributes } from "@/lib/utils/flatten-attributes";
+import useSWR from "swr";
+import { fetcher } from "@/lib/utils/fetcher";
 
 export default function SolicitationHome() {
 
@@ -15,44 +17,9 @@ export default function SolicitationHome() {
 
     const { student } = useGetAgendaEduStudentInfo({ responsible: user });
 
-    const [loading, setLoading] = useState(true);
+    const { data: solicitations, error, isLoading } = useSWR(`/api/solicitations/?filters[student_id][$eq]=${student.id}&sort=status&populate=*`, fetcher);
 
-    const [solicitations, setSolicitations] = useState<Solicitation[]>(null);
-
-    const getSolicitations = useCallback(async () => {
-        const response = await fetch('/api/strapi/', {
-            cache: 'no-store',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'method': 'GET',
-                'path': `/api/solicitations/?filters[student_id][$eq]=${student.id}&sort=status&populate=*`
-            },
-            body: JSON.stringify({}),
-        });
-
-        if (!response.ok) {
-            throw new Error(`Erro ao realizar a requisição: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-
-        if (data?.data?.data?.length > 0) {
-            const flattenedData = flattenAttributes(data.data.data);
-            setSolicitations(flattenedData);
-        }
-
-        setLoading(false);
-
-    }
-        , [student.id]);
-
-    useEffect(() => {
-        getSolicitations();
-    }, [getSolicitations]);
-
-
-    if (loading) {
+    if (isLoading) {
         return (<Loading />)
     }
     return (

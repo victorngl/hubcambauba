@@ -8,6 +8,7 @@ export type Solicitation = {
     priority: string;
     solicitation_type: SolicitationType;
     solicitation_commentaries?: { "data": SolicitationCommentary[] };
+    solicitation_attendant: string & SolicitationAttendant;
     student_id: string;
     student_class: string;
     student_name: string;
@@ -21,6 +22,7 @@ export type SolicitationType = {
     id?: any;
     name: string;
     department: SolicitationDepartment;
+    solicitation_attendants: { "data": SolicitationAttendant[] };
     createdAt?: string;
     updatedAt?: string;
 }
@@ -40,4 +42,13 @@ export type SolicitationDepartment = {
     name: string;
     responsible_email: string;
     responsible_name: string;
+}
+
+export type SolicitationAttendant = {
+    id?: any;
+    course: string;
+    responsible_email: string;
+    responsible_name: string;
+    createdAt?: string;
+    updatedAt?: string;
 }

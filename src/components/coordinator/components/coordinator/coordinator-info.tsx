@@ -27,7 +27,7 @@ export default function CoordinatorInfo({ user }) {
                     <p className='text-gray-800 text-sm font-bold'>{student.class} - {student.course}</p>
                 </div>
                 */}
-                {pathname !== '/' &&
+                {pathname !== '/coordinator/' &&
                     <div className=''>
                         <button onClick={(e) => { handleClick(e) }}
                             type="button"
