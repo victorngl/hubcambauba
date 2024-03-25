@@ -1,11 +1,11 @@
 'use client'
 
-
 import { Solicitation } from "@/types/solicitations";
 import SolicitationCommentariesLayout from "./commentary/solicitations-commentary-layout";
 import Link from "next/link";
 
 export const SolicitationShowForm = ({ solicitation }: { solicitation: Solicitation }) => {
+
     const solicitationBoolStatus = solicitation.status === 'Encerrada' ? false : true;
 
     return (
@@ -33,7 +33,7 @@ export const SolicitationShowForm = ({ solicitation }: { solicitation: Solicitat
 
             {solicitationBoolStatus &&
                 <>
-                    <Link href={`/responsible/solicitations/${solicitation.solicitation_id}/commentary/create/${solicitation.id}/`}>
+                    <Link href={`/responsible/solicitations/${solicitation.id}/commentary/create/`}>
                         <div className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center ">Enviar resposta</div>
                     </Link>
                 </>

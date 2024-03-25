@@ -5,6 +5,7 @@ import { useUser } from "@/contexts/useCurrentUser";
 import { fetcher } from "@/lib/utils/fetcher";
 import SolicitationCard from "@/components/coordinator/components/solicitations/solicitations-card";
 import useSWR from "swr";
+import { Solicitation } from "@/types/solicitations";
 
 
 export default function SolicitationHome() {
@@ -24,7 +25,7 @@ export default function SolicitationHome() {
 
                     {
                         solicitations !== null &&
-                        solicitations.map((solicitation, index) => (
+                        solicitations.map((solicitation: Solicitation, index: number) => (
                             <div key={index}>
                                 <SolicitationCard solicitation={solicitation} />
                             </div>

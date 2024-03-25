@@ -15,7 +15,7 @@ export async function POST(req: Request) {
             headers: {
                 'Authorization': `Bearer ${process.env.STRAPI_JWT}`,
             },
-            body: (strapiMethod === 'POST') ? body : null,
+            body: (strapiMethod !== 'GET') ? body : null,
         });
 
         const data = await apiResponse.json();

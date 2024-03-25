@@ -32,17 +32,17 @@ export default function SolicitationCard({ solicitation }: { solicitation: Solic
             </div>
 
             <div className="text-left md:w-full space-y-1">
-                <p className="text-gray-800 font-semibold">Solicitação: <strong>#{solicitation.solicitation_id}</strong></p>
+                <p className="text-gray-800 font-semibold">Solicitação: <strong>#{solicitation.id}</strong></p>
                 <p className="text-gray-800 font-semibold">Data da Solicitação: {createdAtFormattedDate}</p>
 
                 <p className="text-gray-800 font-semibold">Aluno: {solicitation.student_name}</p>
                 <p className="text-gray-800 font-semibold">Turma: {solicitation.student_class}</p>
                 <p className="text-gray-800 font-semibold">Tipo da Solicitação: {solicitation.solicitation_type.name}</p>
 
-                <p className="text-gray-800 font-semibold flex space-x-1"><div>Status:</div><div className={statusClassname}>{solicitation.status}</div></p>
+                <div className="text-gray-800 font-semibold flex space-x-1"><div>Status:</div><div className={statusClassname}>{solicitation.status}</div></div>
 
 
-                <Link href={`/coordinator/solicitations/${solicitation.solicitation_id}`}>
+                <Link href={`/coordinator/solicitations/${solicitation.id}`}>
                     <button className="w-full bg-blue-500 my-1 p-2 text-white font-bold rounded">Exibir solicitação</button>
                 </Link>
 

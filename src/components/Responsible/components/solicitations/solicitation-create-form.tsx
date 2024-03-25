@@ -8,10 +8,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import FieldErrorBoundary from "../../../ui/utils/field-error-boundary";
 import { useState } from "react";
 import { Solicitation, SolicitationAttendant, SolicitationType } from "@/types/solicitations";
-import { generateRandomNumber } from "@/lib/utils/generate-random-number";
 
 const solicitationSchema = z.object({
-    solicitation_id: z.string().optional(),
     requester_email: z.string(),
     requester_name: z.string(),
     subject: z.string({ invalid_type_error: "O assunto é obrigatório." }).min(1, { message: 'Campo obrigatório' }).max(100, { message: 'Máximo de 100 caracteres' }),
@@ -27,7 +25,6 @@ const solicitationSchema = z.object({
 });
 
 const findAttendant = (solicitation_type: SolicitationType, student) => {
-
     const attendant = solicitation_type.solicitation_attendants.data.find(attendant => attendant.course === student.course);
     return attendant;
 }
@@ -40,7 +37,6 @@ export const SolicitationCreateForm = ({ responsible, solicitation, solicitation
     const { register, handleSubmit, formState: { errors } } = useForm<Solicitation>({
         resolver: zodResolver(solicitationSchema),
         defaultValues: {
-            solicitation_id: solicitation ? solicitation?.solicitation_id : Number(student.id + generateRandomNumber()).toString(),
             requester_email: solicitation ? solicitation?.requester_email : responsible.data.attributes.email,
             requester_name: solicitation ? solicitation?.requester_name : responsible.data.attributes.name,
             subject: solicitation ? solicitation?.subject : null,
@@ -116,12 +112,7 @@ export const SolicitationCreateForm = ({ responsible, solicitation, solicitation
                 <input disabled type="className" {...register("student_class")} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
             </div>
 
-            <div className="mb-5">
-                <label htmlFor="classsName" className="block mb-2 text-sm font-bold text-gray-900">Turma</label>
-                <input disabled type="className" {...register("student_class")} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
-            </div>
-
-
+        
             <div className="mb-5">
 
                 {errors.solicitation_type && <FieldErrorBoundary>{errors.solicitation_type.message}</FieldErrorBoundary>}

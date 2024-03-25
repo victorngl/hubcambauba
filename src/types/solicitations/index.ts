@@ -1,6 +1,5 @@
 export type Solicitation = {
     id?: any;
-    solicitation_id?: any;
     requester_email: string;
     requester_name: string;
     subject: string;
@@ -49,6 +48,7 @@ export type SolicitationAttendant = {
     course: string;
     responsible_email: string;
     responsible_name: string;
+    name: string;
     createdAt?: string;
     updatedAt?: string;
 }

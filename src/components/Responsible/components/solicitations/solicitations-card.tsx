@@ -32,13 +32,13 @@ export default function SolicitationCard({ solicitation }: { solicitation: Solic
             </div>
 
             <div className="text-left md:text-center md:w-1/2 space-y-1">
-                <p className="text-gray-800">Solicitação: <strong>#{solicitation.solicitation_id}</strong></p>
+                <p className="text-gray-800">Solicitação: <strong>#{solicitation.id}</strong></p>
                 <p className="text-gray-800">Tipo da Solicitação: <strong>{solicitation.solicitation_type.name}</strong></p>
                 <p className="text-gray-800 font-semibold flex space-x-1"><div>Status:</div><div className={statusClassname}>{solicitation.status}</div></p>
                 <p className="text-gray-800 text-xs font-semibold">Data da Solicitação: {createdAtFormattedDate}</p>
 
 
-                <Link href={`/responsible/solicitations/${solicitation.solicitation_id}`}>
+                <Link href={`/responsible/solicitations/${solicitation.id}`}>
                     <button className="w-full bg-blue-500 my-1 p-2 text-white font-bold rounded">Exibir solicitação</button>
                 </Link>
 

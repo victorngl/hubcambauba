@@ -1,55 +1,16 @@
 'use client'
 
 import Loading from "@/components/ui/utils/loading";
-import { useUser } from "@/contexts/useCurrentUser";
-import { useCallback, useEffect, useState } from "react";
-import { Solicitation } from "@/types/solicitations";
-import { flattenAttributes } from "@/lib/utils/flatten-attributes";
 import { SolicitationShowForm } from "@/components/coordinator/components/solicitations/solicitation-show-form";
+import useSWR from "swr";
+import { fetcher } from "@/lib/utils/fetcher";
+import Link from "next/link";
 
 export default function SolicitationShowHome({ params }: { params: { id: string } }) {
 
-    const { user } = useUser();
+    const { data: solicitation, error, isLoading } = useSWR(`/api/solicitations/${params.id}?populate[solicitation_commentaries][populate][0]=attachment&populate[solicitation_type][populate][1]=name`, fetcher);
 
-    const [loading, setLoading] = useState(true);
-
-    const [solicitation, setSolicitation] = useState<Solicitation>(null);
-
-    const getSolicitation = useCallback(async () => {
-
-        const response = await fetch('/api/strapi/', {
-            cache: 'no-store',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'method': 'GET',
-                'path': `/api/solicitations/?filters[solicitation_id][$eq]=${params.id}&populate[solicitation_commentaries][populate][0]=attachment&populate[solicitation_type][populate][1]=name`
-            },
-            body: JSON.stringify({}),
-        });
-
-        if (!response.ok) {
-            throw new Error(`Erro ao realizar a requisição: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-
-        if (data?.data?.data?.length > 0) {
-            const flattenedData = flattenAttributes(data.data.data);
-            setSolicitation(flattenedData[0]);
-        }
-
-        setLoading(false);
-
-    }
-        , [params.id]);
-
-    useEffect(() => {
-        getSolicitation();
-    }, [getSolicitation]);
-
-
-    if (loading) {
+    if (isLoading) {
         return (<Loading />)
     }
     return (
@@ -57,8 +18,18 @@ export default function SolicitationShowHome({ params }: { params: { id: string 
             {solicitation !== null &&
                 <div className="p-2 w-full">
                     <div className="text-center">
-                        <h1 className="mb-2 font-bold text-gray-800">Solicitação #{solicitation.solicitation_id}</h1>
-                        <SolicitationShowForm responsible={user} solicitation={solicitation} />
+                        <h1 className="mb-2 font-bold text-gray-800">Solicitação #{solicitation.id}</h1>
+
+                        <div className="grid grid-cols-2 w-full gap-2">
+                            <Link href={`/coordinator/solicitations/${solicitation.id}/transfer`}>
+                                <div className="text-white font-bold rounded p-2 bg-green-400">Transferir</div>
+                            </Link>
+                            <Link href={`/coordinator/solicitations/${solicitation.id}/transfer`}>
+                                <div className="text-white font-bold rounded p-2 bg-blue-500">Mudar status</div>
+                            </Link>
+                        </div>
+
+                        <SolicitationShowForm solicitation={solicitation} />
                     </div>
                 </div>
             }
