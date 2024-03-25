@@ -10,7 +10,6 @@ import OlympicShirtCard from "@/components/Responsible/components/olympics/shirt
 import OlympicHeader from "@/components/Responsible/components/olympics/olympic-header";
 
 export default function OlympicsHome() {
-
     const { user } = useUser();
 
     const { student } = useGetAgendaEduStudentInfo({ responsible: user });
@@ -18,6 +17,7 @@ export default function OlympicsHome() {
     const [loading, setLoading] = useState(true);
 
     const [olympicShirts, setOlympicShirts] = useState<OlympicShirt[]>(null);
+
     const [studentShirtButton, setStudentShirtButton] = useState<boolean>(false);
 
 
@@ -83,6 +83,8 @@ export default function OlympicsHome() {
 
                     <div className="flex flex-col w-full justify-center space-y-2">
                         {!studentShirtButton &&
+
+                        /*
                             <Link href="/responsible/olympics/shirt/student">
                                 <button className="p-4 text-white font-bold bg-blue-600 rounded w-full">
 
@@ -90,6 +92,13 @@ export default function OlympicsHome() {
 
                                 </button>
                             </Link>
+
+                            */
+
+
+                            <button disabled className="p-4 text-white font-bold bg-gray-600 rounded w-full">
+                                Prazo para escolha da camisa do aluno expirado
+                            </button>
                         }
 
                         {/*
@@ -105,7 +114,7 @@ export default function OlympicsHome() {
 
 
                 </div>
-            </div>
+            </div >
         </>
     )
 
